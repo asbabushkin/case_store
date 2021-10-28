@@ -1,6 +1,8 @@
 from django.db import models
 
 # Create your models here.
+from django.db.models import UniqueConstraint
+
 
 class Product(models.Model):
     category_id = models.ForeignKey('Category', on_delete=models.PROTECT, verbose_name='Категория')
@@ -32,6 +34,31 @@ class Category(models.Model):
 
     def __str__(self):
         return self.name
+
+
+class Phone(models.Model):
+    brand = models.CharField('Брэнд', max_length=30, db_index=True)
+    model = models.CharField('Брэнд', max_length=30, db_index=True)
+
+    class Meta:
+        ordering = ('model',)
+        verbose_name = 'Телефон'
+        verbose_name_plural = 'Телефоны'
+
+    def __str__(self):
+        return self.model
+
+class ProductToPhone(models.Model):
+    product_id = models.ForeignKey('Product', on_delete=models.PROTECT, primary_key=True, verbose_name='ID категории')
+    phone_id = models.ForeignKey('Phone', on_delete=models.PROTECT, verbose_name='ID телефона')
+
+    class Meta:
+        UniqueConstraint(fields=['product_id', 'phone_id'], name='id_product_to_phone')
+        #unique_together = (('key1', 'key2'),) - устаревший вариант
+
+        ordering = ('product_id',)
+        verbose_name = 'Продукт-Телефон'
+
 
 
 
