@@ -1,11 +1,17 @@
 from django.http import HttpResponse, HttpResponseNotFound, Http404
 from django.shortcuts import render, redirect
-
+from .models import *
 
 # Create your views here.
 
+menu = ['About', 'Categories', 'Personal account', 'Cart']
+
 def index(request):
-    return HttpResponse('Страница приложения Магазин')
+    cats = Category.objects.all()
+    return render(request, 'store/index.html', {'cats': cats, 'menu': menu, 'title': 'Main Page'})
+
+def about(request):
+    return render(request, 'store/about.html', {'menu': menu, 'title': 'About'})
 
 
 def categories(request, cat_id):

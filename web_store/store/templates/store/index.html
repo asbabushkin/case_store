@@ -1,0 +1,14 @@
+{% extends 'store/base.html' %}
+
+{% block content %}
+    <h1> {{ title }} </h1>
+    <p>Main page content</p>
+    <ul>
+        {% for c in cats %}
+            <li>
+                {{ c.name }}
+                <hr>
+            </li>
+        {% endfor %}
+    </ul>
+{% endblock %}
