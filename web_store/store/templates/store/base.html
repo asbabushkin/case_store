@@ -5,18 +5,135 @@
 <head>
     <meta charset="UTF-8">
     <title> {{ title }}</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
 </head>
 <body>
-    {% block mainmenu %}
-        <ul>
-            {% for m in menu%}
-                <li>{{ m }}</li>
-            {% endfor %}
-        </ul>
-    {% endblock mainmenu %}
 
-    {% block content %}
-    {% endblock %}
+<header class="p-3 bg-dark text-white">
+    <div class="container">
+        <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+            <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
+                <svg class="bi me-2" width="40" height="32" role="img" aria-label="Bootstrap">
+                    <use xlink:href="#bootstrap"/>
+                </svg>
+            </a>
+
+            <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+                <li><a href="{% url 'index' %}" class="nav-link px-2 text-white">Главная</a></li>
+                <li><a href="{% url 'about_delivery' %}" class="nav-link px-2 text-white">Доставка</a></li>
+                <li><a href="{% url 'about_payment' %}" class="nav-link px-2 text-white">Оплата</a></li>
+                <li><a href="{% url 'about' %}" class="nav-link px-2 text-white">О нас</a></li>
+                <li><a href="{% url 'faq' %}" class="nav-link px-2 text-white">FAQs</a></li>
+            </ul>
+
+            <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
+                <input type="search" class="form-control form-control-dark" placeholder="Search..." aria-label="Search">
+            </form>
+
+            <div class="text-end">
+                <button type="button" class="btn btn-outline-light me-2">Login</button>
+                <button type="button" class="btn btn-warning">Sign-up</button>
+
+
+            </div>
+        </div>
+    </div>
+</header>
+
+<div class="album py-5 bg-light">
+<ul class="nav nav-tabs" style="justify-content: center" >
+
+    <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Apple</a>
+        <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="{% url 'phone' %}">iPhone 11</a></li>
+            <li><a class="dropdown-item" href="{% url 'phone' %}">iPhone 12</a></li>
+            <li><a class="dropdown-item" href="{% url 'phone' %}">iPhone 13</a></li>
+            <li>
+                <hr class="dropdown-divider">
+            </li>
+            <li><a class="dropdown-item" href="#">Все модели</a></li>
+        </ul>
+    </li>
+    <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Samsung</a>
+        <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="{% url 'phone' %}">Samsung Galaxy S20</a></li>
+            <li><a class="dropdown-item" href="{% url 'phone' %}">Samsung Galaxy S21</a></li>
+            <li><a class="dropdown-item" href="{% url 'phone' %}">Samsung Galaxy S21 Ultra</a></li>
+            <li>
+                <hr class="dropdown-divider">
+            </li>
+            <li><a class="dropdown-item" href="#">Все модели</a></li>
+        </ul>
+    </li>
+    <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Xiaomi</a>
+        <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="{% url 'phone' %}">Xiaomi Mi 9</a></li>
+            <li><a class="dropdown-item" href="{% url 'phone' %}">Xiaomi Mi 10</a></li>
+            <li><a class="dropdown-item" href="{% url 'phone' %}">Xiaomi Mi 11 </a></li>
+            <li>
+                <hr class="dropdown-divider">
+            </li>
+            <li><a class="dropdown-item" href="#">Все модели</a></li>
+        </ul>
+    </li>
+    <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Honor</a>
+        <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="{% url 'phone' %}">Honor 7</a></li>
+            <li><a class="dropdown-item" href="{% url 'phone' %}">Honor 8</a></li>
+            <li><a class="dropdown-item" href="{% url 'phone' %}">Honor 9</a></li>
+            <li>
+                <hr class="dropdown-divider">
+            </li>
+            <li><a class="dropdown-item" href="#">Все модели</a></li>
+        </ul>
+    </li>
+    <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Huawei</a>
+        <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="{% url 'phone' %}">Huawei P 20</a></li>
+            <li><a class="dropdown-item" href="{% url 'phone' %}">Huawei P 30</a></li>
+            <li><a class="dropdown-item" href="{% url 'phone' %}">Huawei P 50</a></li>
+            <li>
+                <hr class="dropdown-divider">
+            </li>
+            <li><a class="dropdown-item" href="#">Все модели</a></li>
+        </ul>
+    </li>
+
+</ul>
+</div>
+
+<!--{% block mainmenu %}-->
+<!--<ul>-->
+<!--    {% for m in menu%}-->
+<!--    <li>{{ m }}</li>-->
+<!--    {% endfor %}-->
+<!--</ul>-->
+<!--{% endblock mainmenu %}-->
+
+{% block content %}
+{% endblock %}
+
+
+
+
+<footer class="py-3 my-4">
+    <ul class="nav justify-content-center border-bottom pb-3 mb-3">
+        <li><a href="{% url 'index' %}" class="nav-link px-2 text-white">Главная</a></li>
+        <li><a href="{% url 'about_delivery' %}" class="nav-link px-2 text-white">Доставка</a></li>
+        <li><a href="{% url 'about_payment' %}" class="nav-link px-2 text-white">Оплата</a></li>
+        <li><a href="{% url 'about' %}" class="nav-link px-2 text-white">О нас</a></li>
+        <li><a href="{% url 'faq' %}" class="nav-link px-2 text-white">FAQs</a></li>
+    </ul>
+    <p class="text-center text-muted">&copy; 2021 Case Story, Inc</p>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"></script>
 
 </body>
 </html>

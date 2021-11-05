@@ -2,8 +2,15 @@ from django.urls import path, re_path
 from .views import *
 
 urlpatterns = [
-    path('', index, name='home'),
-    path('about/', about, name='about')
-    # path('cats/<slug:cat_id>/', categories),
-    # re_path(r'^archive/(?P<year>[0-9]{4})/', archive),
+    path('', index, name='index'),
+    path('about/', about, name='about'),
+    path('about_delivery/', about_delivery, name='about_delivery'),
+    path('about_payment/', about_payment, name='about_payment'),
+    path('faq/', faq, name='faq'),
+    path('personal_account/', personal_account, name='personal_account'),
+    path('cart/', cart, name='cart'),
+    path('category/', category, name='category'),
+    path('phone/', phone, name='phone'),
+    path('case/<int:case_id>/', case_page, name='case_page'),
+
 ]

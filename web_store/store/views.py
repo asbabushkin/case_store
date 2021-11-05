@@ -1,37 +1,72 @@
-from django.http import HttpResponse, HttpResponseNotFound, Http404
-from django.shortcuts import render, redirect
+from django.http import HttpResponse, HttpResponseNotFound
+from django.shortcuts import render
+
 from .models import *
 
 # Create your views here.
 
-menu = ['About', 'Categories', 'Personal account', 'Cart']
+# menu = ['About', 'Categories', 'Personal account', 'Cart']
+menu = [
+    {'title': 'Главная', 'url_name': 'index'},
+    {'title': 'Доставка', 'url_name': 'about_delivery'},
+    {'title': 'Оплата', 'url_name': 'about_payment'},
+    {'title': 'О нас', 'url_name': 'about'},
+    {'title': 'Частые вопросы', 'url_name': 'faq'},
+    {'title': 'Личный кабинет', 'url_name': 'personal_account'},
+    {'title': 'Корзина', 'url_name': 'cart'},
+    {'title': 'Категория', 'url_name': 'category'},
+    {'title': 'Телефон', 'url_name': 'phone'},
+]
+
 
 def index(request):
     cats = Category.objects.all()
-    return render(request, 'store/index.html', {'cats': cats, 'menu': menu, 'title': 'Main Page'})
+    context = {
+        'cats': cats,
+        'menu': menu,
+        'title': 'Главная страница',
+    }
+    return render(request, 'store/index.html', context=context)
+
 
 def about(request):
     return render(request, 'store/about.html', {'menu': menu, 'title': 'About'})
 
 
-def categories(request, cat_id):
-    if request.GET:
-        print(request.GET)
-    else:
-        print('No request data')
+def about_delivery(request):
+    return HttpResponse('Условия доставки')
 
-    # if request.POST:
-    #     print(request.POST)
-    # else:
-    #     print('No POST data')
-    return HttpResponse(f"<h1>Страница категории</h1><p>{cat_id}</p>")
 
-def archive(request, year):
-    if int(year) > 2020:
-        #raise Http404()
-        return redirect('home', permanent=True)
+def about_delivery(request):
+    return HttpResponse('Условия доставки')
 
-    return HttpResponse(f"<h1>Архив по годам</h1><p>{year}</p>")
+
+def about_payment(request):
+    return HttpResponse('Условия оплаты')
+
+
+def faq(request):
+    return HttpResponse('Частые вопросы')
+
+
+def personal_account(request):
+    return HttpResponse('Личный кабинет')
+
+
+def cart(request):
+    return HttpResponse('Корзина')
+
+
+def category(request):
+    return HttpResponse('Категория')
+
+
+def phone(request):
+    return HttpResponse('Телефон')
+
+def case_page(request, case_id):
+    return HttpResponse(f'Карточка чехла с id = {case_id}')
+
 
 def pageNotFound(request, exception):
     return HttpResponseNotFound('<h1>Страница не найдена</h1>')
