@@ -7,11 +7,11 @@ from django.urls import reverse
 
 class Product(models.Model):
     category_id = models.ForeignKey('Category', on_delete=models.PROTECT, verbose_name='Категория')
-    name = models.CharField('Наименование товара', max_length=100, db_index=True)
-    slug = models.SlugField('URL', max_length=200, db_index=True, unique=True)
+    name = models.CharField(max_length=100, db_index=True, verbose_name='Наименование товара')
+    slug = models.SlugField(max_length=255, db_index=True, unique=True, verbose_name='URL')
     image = models.ImageField('Изображение', upload_to='cases/%Y/%m/%d')
-    description = models.TextField('Описание товара', blank=True)
-    price = models.DecimalField('Цена', max_digits=10, decimal_places=2)
+    description = models.TextField(blank=True, verbose_name='Описание товара')
+    price = models.DecimalField(max_digits=6, decimal_places=2, verbose_name='Цена')
 
     class Meta:
         ordering = ('name',)
@@ -22,7 +22,7 @@ class Product(models.Model):
         return self.name
 
     def get_absolute_url(self):
-        return reverse('case_page', kwargs={'case_id': self.pk})
+        return reverse('product_page', kwargs={'product_slug': self.slug})
 
 
 class Category(models.Model):

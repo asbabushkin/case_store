@@ -1,5 +1,5 @@
 from django.http import HttpResponse, HttpResponseNotFound
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 
 from .models import *
 
@@ -21,8 +21,10 @@ menu = [
 
 def index(request):
     cats = Category.objects.all()
+    phones = Phone.objects.all()
     context = {
         'cats': cats,
+        'phones': phones,
         'menu': menu,
         'title': 'Главная страница',
     }
@@ -64,8 +66,15 @@ def category(request):
 def phone(request):
     return HttpResponse('Телефон')
 
-def case_page(request, case_id):
-    return HttpResponse(f'Карточка чехла с id = {case_id}')
+def product_page(request, product_slug):
+    product = get_object_or_404(Product, slug=product_slug)
+
+    context = {
+        'product': product,
+        'category': product.category_id,
+
+    }
+    return HttpResponse(f'Карточка чехла с id = {product_slug}')
 
 
 def pageNotFound(request, exception):

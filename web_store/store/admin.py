@@ -8,6 +8,7 @@ class ProductAdmin(admin.ModelAdmin):
     list_display = ('id', 'category_id', 'name', 'slug', 'image', 'description', 'price')
     list_display_links = ('id', 'name')
     search_fields = ('name', 'description')
+    prepopulated_fields = {'slug': ('name',)}
 
 
 class PhoneAdmin(admin.ModelAdmin):
@@ -20,6 +21,8 @@ class CategoryAdmin(admin.ModelAdmin):
     list_display = ('id', 'name', 'slug', 'image')
     list_display_links = ('id', 'name')
     search_fields = ('name',)
+    prepopulated_fields = {'slug': ('name',)}
+
 
 class PropertyAdmin(admin.ModelAdmin):
     list_display = ('id', 'name')
