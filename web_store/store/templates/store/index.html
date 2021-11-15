@@ -1,17 +1,37 @@
 {% extends 'store/base.html' %}
 
 {% block content %}
-<!--<h1> {{ title }} </h1>-->
-<!--<p>Main page content</p>-->
-<!--<ul>-->
-<!--    {% for c in cats %}-->
-<!--    <li>-->
-<!--        {{ c.name }}-->
-<!--        <hr>-->
-<!--    </li>-->
-<!--    {% endfor %}-->
-<!--</ul>-->
 
+
+<!--навбар с брендами телефонов-->
+
+<div class="album py-5 bg-light">
+<ul class="nav nav-tabs" style="justify-content: center" >
+
+{% for brand in phone_brands %}
+    <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">{{ brand }}</a>
+        <ul class="dropdown-menu">
+            {% for phone in phones %}
+                {% if phone.brand == brand %}
+                    <li><a class="dropdown-item" href="{% url 'phone' %}">{{ phone.model }}</a></li>
+                {% endif %}
+            {% endfor %}
+            <li>
+                <hr class="dropdown-divider">
+            </li>
+            <li><a class="dropdown-item" href="#">Все модели</a></li>
+        </ul>
+    </li>
+{% endfor %}
+
+</ul>
+</div>
+
+
+<h2 align="center">Чехлы для телефона </h2>
+
+<!--# плитка категорий-->
 
 <div class="album py-5 bg-light">
     <div class="container">

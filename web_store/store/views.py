@@ -22,12 +22,20 @@ menu = [
 def index(request):
     cats = Category.objects.all()
     phones = Phone.objects.all()
+    phone_brands = []
+    for p in phones:
+        if p.brand not in phone_brands:
+            phone_brands.append(p.brand)
+    phone_brands.sort()
+
     context = {
         'cats': cats,
         'phones': phones,
+        'phone_brands': phone_brands,
         'menu': menu,
         'title': 'Главная страница',
     }
+
     return render(request, 'store/index.html', context=context)
 
 
