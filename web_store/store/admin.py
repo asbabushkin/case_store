@@ -12,9 +12,10 @@ class ProductAdmin(admin.ModelAdmin):
 
 
 class PhoneAdmin(admin.ModelAdmin):
-    list_display = ('id', 'brand', 'model')
+    list_display = ('id', 'brand', 'model', 'slug')
     list_display_links = ('id', 'model')
     search_fields = ('brand', 'model')
+    prepopulated_fields = {'slug': ('brand', 'model')}
 
 
 class CategoryAdmin(admin.ModelAdmin):

@@ -1,4 +1,5 @@
 from django.db import models
+from datetime import datetime
 
 # Create your models here.
 from django.db.models import UniqueConstraint
@@ -27,7 +28,7 @@ class Product(models.Model):
 
 class Category(models.Model):
     name = models.CharField('Наименование категории', max_length=200, db_index=True)
-    slug = models.SlugField('URL', max_length=200, db_index=True, unique=True)
+    slug = models.SlugField('URL', max_length=200, db_index=True, unique=True, null=True)
     image = models.ImageField('Изображение', upload_to='category/%Y/%m/%d', null=True)
 
     class Meta:
@@ -42,6 +43,7 @@ class Category(models.Model):
 class Phone(models.Model):
     brand = models.CharField('Брэнд', max_length=30, db_index=True)
     model = models.CharField('Модель', max_length=30, db_index=True)
+    slug = models.SlugField(max_length=255, db_index=True, verbose_name='URL', unique=True)
 
     class Meta:
         ordering = ('model',)
