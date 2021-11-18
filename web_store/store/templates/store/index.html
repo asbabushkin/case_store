@@ -1,5 +1,4 @@
 {% extends 'store/base.html' %}
-
 {% block content %}
 
 
@@ -14,7 +13,8 @@
         <ul class="dropdown-menu">
             {% for phone in phones %}
                 {% if phone.brand == brand %}
-                    <li><a class="dropdown-item" href="{% url 'phone' %}">{{ phone.model }}</a></li>
+                    <li><a class="dropdown-item" href="#">{{ phone.model }}</a></li>
+<!--                    <li><a class="dropdown-item" href="{% url 'phone' %}">{{ phone.model }}</a></li>-->
                 {% endif %}
             {% endfor %}
             <li>
@@ -71,12 +71,16 @@
     </div>
 </div>
 
+{% endblock %}
+
 <!--<script>-->
+<!--alert('Script is working!');-->
 <!--    let phoneArray = document.getElementsByClassName("dropdown-item");-->
 
 <!--    let selectphoneFunc = function(){-->
 
-<!--        let phoneDiv = document.getElementById("phone-selected")-->
+<!--        let phoneDiv = document.getElementById("phone-selected");-->
+<!--        alert('hello!');-->
 <!--        let phoneNameLabel = document.createElement("h2");-->
 <!--        phoneNameLabel.innerHTML = "Телефон";-->
 <!--        phoneDiv.append(phoneNameLabel);-->
@@ -87,4 +91,3 @@
 <!--    phoneArray[i].addEventListener('click', selectphoneFunc);-->
 <!--</script>-->
 
-{% endblock %}

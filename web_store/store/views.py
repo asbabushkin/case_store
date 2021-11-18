@@ -72,7 +72,7 @@ def category(request):
 
 
 def phone(request):
-    return HttpResponse('Телефон')
+    return render(request, 'store/phone.html')
 
 def product_page(request, product_slug):
     product = get_object_or_404(Product, slug=product_slug)
