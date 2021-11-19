@@ -13,7 +13,7 @@
         <ul class="dropdown-menu">
             {% for phone in phones %}
                 {% if phone.brand == brand %}
-                    <li><a class="dropdown-item" href="#">{{ phone.model }}</a></li>
+                    <li><a class="dropdown-item" id="{{ phone.model }}" href="#">{{ phone.model }}</a></li>
 <!--                    <li><a class="dropdown-item" href="{% url 'phone' %}">{{ phone.model }}</a></li>-->
                 {% endif %}
             {% endfor %}
@@ -27,10 +27,10 @@
 
 </ul>
 </div>
-
+<!--конец навбара-->
 
 <div class="album py-5 bg-light" id="phone-selected">
-    <h2 align="center">Чехлы для телефона </h2>
+    <h2  id="h2-phone-selected" align="center">Выберите модель телефона </h2>
 </div>
 
 

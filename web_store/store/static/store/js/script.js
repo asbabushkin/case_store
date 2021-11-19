@@ -6,11 +6,15 @@ alert(phoneArray.length);
 
 let choosePhone = function(){
     alert('In function');
-    let phoneDiv = document.getElementById("phone-selected");
-    alert('hello!');
-    let phoneNameLabel = document.createElement("h2");
-    phoneNameLabel.innerHTML = "Телефон";
-    phoneDiv.append(phoneNameLabel);
+    let phoneId=this.getAttribute('id');
+    alert(phoneId);
+
+//    let phoneDiv = document.getElementById("phone-selected");
+    document.getElementById("h2-phone-selected").innerHTML = "Чехлы для телефона " + phoneId;
+
+//    let phoneNameLabel = document.createElement("h2");
+//    phoneNameLabel.innerHTML = "Чехлы для телефона " + phoneId;
+//    phoneDiv.append(phoneNameLabel);
 
 }
 
