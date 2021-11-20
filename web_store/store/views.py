@@ -23,6 +23,7 @@ def index(request):
     cats = Category.objects.all()
     phones = Phone.objects.all()
     products = Product.objects.all()
+    img_collection = Value.objects.all()
     phone_brands = []
     for p in phones:
         if p.brand not in phone_brands:
@@ -33,6 +34,7 @@ def index(request):
         'cats': cats,
         'phones': phones,
         'products': products,
+        'img_collection': img_collection,
         'phone_brands': phone_brands,
         'menu': menu,
         'title': 'Главная страница',

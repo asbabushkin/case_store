@@ -77,20 +77,32 @@
 <div id="card-side-menu" style="display: flex; justify-content: flex-start">
 
     <!--сайдбар-->
-    <div id="sidebar">
-        <nav class="nav flex-column">
-            <a>Категории</a>
-            <a class="nav-link active" aria-current="page" href="#">Чехлы пластиковые</a>
-            <a class="nav-link" href="#">Чехлы противоударные</a>
-            <a class="nav-link" href="#">Чехлы силиконовые</a>
-            <a class="nav-link disabled">Disabled</a>
-            <a>Коллекции изображений</a>
-            <a class="nav-link active" aria-current="page" href="#">Аниме</a>
-            <a class="nav-link" href="#">Мультфильмы</a>
-            <a class="nav-link" href="#">Игры</a>
-            <a class="nav-link disabled">Без принта</a>
-        </nav>
-    </div>
+    <form method="POST">
+        {% csrf_token %}
+        <div id="sidebar">
+            <nav class="nav flex-column">
+                <h5>Категории</h5>
+                {% for c in cats %}
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" value="" id="{{ c.name }}">
+                      <label class="form-check-label" for="{{ c.name }}">{{ c.name }}</label>
+                    </div>
+                {% endfor %}
+
+                <h5>Коллекции изображений</h5>
+                {% for c in img_collection %}
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" value="" id="{{ c.weight }}">
+                      <label class="form-check-label" for="{{ c.weight }}">{{ c.weight }}</label>
+                    </div>
+                {% endfor %}
+                <button type="submit" class="btn btn-secondary">Показать</button>
+
+            </nav>
+
+        </div>
+    </form>
+
 
     <!--карточки товара-->
 
@@ -113,13 +125,12 @@
                             {% endif %}
 
                             <div class="card-body">
-                                <p class="card-text">{{ p.name }}</p>
+
+                                <p class="card-text">{{p.category_id}} "{{ p.name }}"</p>
                                 <div class="d-flex justify-content-between align-items-center">
-                                    <div class="btn-group">
-                                        <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                                        <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                                    </div>
-                                    <small class="text-muted">9 mins</small>
+                                    <button type="button" class="btn btn-sm btn-outline-secondary">Подробнее</button>
+                                    <button type="button" class="btn btn-sm btn-outline-secondary">В корзину</button>
+
                                 </div>
                             </div>
                         </div>
