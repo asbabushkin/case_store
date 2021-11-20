@@ -22,6 +22,7 @@ menu = [
 def index(request):
     cats = Category.objects.all()
     phones = Phone.objects.all()
+    products = Product.objects.all()
     phone_brands = []
     for p in phones:
         if p.brand not in phone_brands:
@@ -31,6 +32,7 @@ def index(request):
     context = {
         'cats': cats,
         'phones': phones,
+        'products': products,
         'phone_brands': phone_brands,
         'menu': menu,
         'title': 'Главная страница',

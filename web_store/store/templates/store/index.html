@@ -36,57 +36,103 @@
 
 <!--# плитка категорий-->
 
-<div class="album py-5 bg-light">
-    <div class="container">
-        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-            {% for c in cats %}
-                <div class="col">
-                    <div class="card shadow-sm">
-                        {% if c.image %}
-                            <p><img src='{{ c.image.url }}'></p>
+<!--<div class="album py-5 bg-light">-->
+<!--    <div class="container">-->
+<!--        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">-->
+<!--            {% for c in cats %}-->
+<!--                <div class="col">-->
+<!--                    <div class="card shadow-sm">-->
+<!--                        {% if c.image %}-->
+<!--                            <p><img src='{{ c.image.url }}'></p>-->
 
-                        {% else %}
-                            <svg class="bd-placeholder-img card-img-top" width="100%" height="225"
-                             xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail"
-                             preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title>
-                            <rect width="100%" height="100%" fill="#55595c"/>
-                            <text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text>
-                            </svg>
-                        {% endif %}
+<!--                        {% else %}-->
+<!--                            <svg class="bd-placeholder-img card-img-top" width="100%" height="225"-->
+<!--                             xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail"-->
+<!--                             preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title>-->
+<!--                            <rect width="100%" height="100%" fill="#55595c"/>-->
+<!--                            <text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text>-->
+<!--                            </svg>-->
+<!--                        {% endif %}-->
 
-                        <div class="card-body">
-                            <p class="card-text">{{ c.name }}</p>
-                            <div class="d-flex justify-content-between align-items-center">
-                                <div class="btn-group">
-                                    <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                                    <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
+<!--                        <div class="card-body">-->
+<!--                            <p class="card-text">{{ c.name }}</p>-->
+<!--                            <div class="d-flex justify-content-between align-items-center">-->
+<!--                                <div class="btn-group">-->
+<!--                                    <button type="button" class="btn btn-sm btn-outline-secondary">View</button>-->
+<!--                                    <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>-->
+<!--                                </div>-->
+<!--                                <small class="text-muted">9 mins</small>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            {% endfor %}-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->
+
+
+
+
+<div id="card-side-menu" style="display: flex; justify-content: flex-start">
+
+    <!--сайдбар-->
+    <div id="sidebar">
+        <nav class="nav flex-column">
+            <a>Категории</a>
+            <a class="nav-link active" aria-current="page" href="#">Чехлы пластиковые</a>
+            <a class="nav-link" href="#">Чехлы противоударные</a>
+            <a class="nav-link" href="#">Чехлы силиконовые</a>
+            <a class="nav-link disabled">Disabled</a>
+            <a>Коллекции изображений</a>
+            <a class="nav-link active" aria-current="page" href="#">Аниме</a>
+            <a class="nav-link" href="#">Мультфильмы</a>
+            <a class="nav-link" href="#">Игры</a>
+            <a class="nav-link disabled">Без принта</a>
+        </nav>
+    </div>
+
+    <!--карточки товара-->
+
+    <div class="album py-5 bg-light">
+        <div class="container">
+            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+                {% for p in products %}
+                    <div class="col">
+                        <div class="card shadow-sm">
+                            {% if p.image %}
+                                <p><img width="360px" height="360px" src='{{ p.image.url }}'></p>
+
+                            {% else %}
+                                <svg class="bd-placeholder-img card-img-top" width="100%" height="225"
+                                 xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail"
+                                 preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title>
+                                <rect width="100%" height="100%" fill="#55595c"/>
+                                <text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text>
+                                </svg>
+                            {% endif %}
+
+                            <div class="card-body">
+                                <p class="card-text">{{ p.name }}</p>
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div class="btn-group">
+                                        <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
+                                        <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
+                                    </div>
+                                    <small class="text-muted">9 mins</small>
                                 </div>
-                                <small class="text-muted">9 mins</small>
                             </div>
                         </div>
                     </div>
-                </div>
-            {% endfor %}
+                {% endfor %}
+            </div>
         </div>
     </div>
-</div>
-
-
-<!--карточки товара-->
-
-<div id="card-container"></div>
-
-
-    <div class="card" style="width: 18rem;">
-      <img src="..." class="card-img-top" alt="...">
-      <div class="card-body">
-        <h5 class="card-title">Card title</h5>
-        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-        <a href="#" class="btn btn-primary">Go somewhere</a>
-      </div>
-    </div>
 
 </div>
+
+
+
 {% endblock %}
 
 
