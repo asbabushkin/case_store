@@ -77,10 +77,11 @@
 <div id="card-side-menu" style="display: flex; justify-content: flex-start">
 
     <!--сайдбар-->
-    <form method="POST">
+    <form method="GET">
         {% csrf_token %}
         <div id="sidebar">
             <nav class="nav flex-column">
+                <h5 id="side-bar-phone-name">Телефон не выбран</h5>
                 <h5>Категории</h5>
                 {% for c in cats %}
                     <div class="form-check">
@@ -96,6 +97,8 @@
                       <label class="form-check-label" for="{{ c.weight }}">{{ c.weight }}</label>
                     </div>
                 {% endfor %}
+
+                {{ form_filter.as_p }}
                 <button type="submit" class="btn btn-secondary">Показать</button>
 
             </nav>
