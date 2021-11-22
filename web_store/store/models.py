@@ -41,8 +41,8 @@ class Category(models.Model):
 
 
 class Phone(models.Model):
-    brand = models.CharField('Брэнд', max_length=30, db_index=True)
-    model = models.CharField('Модель', max_length=30, db_index=True)
+    brand = models.CharField(max_length=30, db_index=True, verbose_name='Брэнд')
+    model = models.CharField(max_length=30, db_index=True, verbose_name='Модель')
     slug = models.SlugField(max_length=255, db_index=True, verbose_name='URL', unique=True)
 
     class Meta:
