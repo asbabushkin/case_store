@@ -3,7 +3,6 @@ from django.shortcuts import render, get_object_or_404
 from django.views.generic import ListView
 from .models import *
 from .forms import *
-from django.db.models import Q
 from itertools import chain
 
 # Create your views here.
@@ -49,18 +48,20 @@ class StoreHome(ListView):
             products_plastic = []
             products_shockproof = []
             products_silicon = []
-            # if form.cleaned_data['cat_plastic'] or form.cleaned_data['cat_shockproof'] or form.cleaned_data['cat_silicon']:
-            #     if form.cleaned_data['cat_plastic']:
-            products_plastic = Product.objects.filter(category_id__name='Чехол пластиковый')
-                # if form.cleaned_data['cat_shockproof']:
-            products_shockproof = Product.objects.filter(category_id__name='Чехол противоударный')
-                # if form.cleaned_data['cat_silicon']:
-            products_silicon = Product.objects.filter(category_id__name='Чехол силиконовый')
+            #if form.cleaned_data['cat_plastic'] or form.cleaned_data['cat_shockproof'] or form.cleaned_data['cat_silicon']:
+            if form.cleaned_data['cat_plastic']:
+                products_plastic = Product.objects.filter(category_id__name='Чехол пластиковый')
+            if form.cleaned_data['cat_shockproof']:
+                products_shockproof = Product.objects.filter(category_id__name='Чехол противоударный')
+            if form.cleaned_data['cat_silicon']:
+                products_silicon = Product.objects.filter(category_id__name='Чехол силиконовый')
             products = list(chain(products_plastic, products_shockproof, products_silicon))
 
             return products
             # return Product.objects.filter(name__icontains=form.cleaned_data['name'])
-        return Product.objects.all()
+        else:
+
+            return Product.objects.all()
 
 
 # def index(request):
