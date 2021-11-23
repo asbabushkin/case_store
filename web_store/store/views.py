@@ -1,6 +1,6 @@
 from django.http import HttpResponse, HttpResponseNotFound
 from django.shortcuts import render, get_object_or_404
-from django.views.generic import ListView
+from django.views.generic import ListView, TemplateView
 from .models import *
 from .forms import *
 from itertools import chain
@@ -27,12 +27,14 @@ class StoreHome(ListView):
     template_name = 'store/index.html'
     context_object_name = 'products'
 
+
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
 
         phone_brands = list(Phone.objects.values_list('brand', flat=True))
         phone_brands = list(set(phone_brands))
         phone_brands.sort()
+
 
         context['phone_brands'] = phone_brands
         context['cats'] = Category.objects.values('name')
@@ -48,22 +50,27 @@ class StoreHome(ListView):
             products_plastic = []
             products_shockproof = []
             products_silicon = []
-            #if form.cleaned_data['cat_plastic'] or form.cleaned_data['cat_shockproof'] or form.cleaned_data['cat_silicon']:
-            if form.cleaned_data['cat_plastic']:
-                products_plastic = Product.objects.filter(category_id__name='Чехол пластиковый')
-            if form.cleaned_data['cat_shockproof']:
-                products_shockproof = Product.objects.filter(category_id__name='Чехол противоударный')
-            if form.cleaned_data['cat_silicon']:
-                products_silicon = Product.objects.filter(category_id__name='Чехол силиконовый')
-            products = list(chain(products_plastic, products_shockproof, products_silicon))
+            if form.cleaned_data['cat_plastic'] or form.cleaned_data['cat_shockproof'] or form.cleaned_data['cat_silicon']:
+                if form.cleaned_data['cat_plastic']:
+                    products_plastic = Product.objects.filter(category_id__name='Чехол пластиковый')
+                if form.cleaned_data['cat_shockproof']:
+                    products_shockproof = Product.objects.filter(category_id__name='Чехол противоударный')
+                if form.cleaned_data['cat_silicon']:
+                    products_silicon = Product.objects.filter(category_id__name='Чехол силиконовый')
+                products = list(chain(products_plastic, products_shockproof, products_silicon))
 
-            return products
+                return products
             # return Product.objects.filter(name__icontains=form.cleaned_data['name'])
-        else:
+            else:
 
-            return Product.objects.all()
+                return Product.objects.all()
 
 
+
+
+
+
+# функциональный подход
 # def index(request):
 #     cats = Category.objects.all()
 #     phones = Phone.objects.all()
