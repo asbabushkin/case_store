@@ -83,20 +83,20 @@
             <nav class="nav flex-column">
                 <h5 id="side-bar-phone-name">Телефон не выбран</h5>
                 <h5>Категории</h5>
-                {% for c in cats %}
-                    <div class="form-check">
-                      <input class="form-check-input" type="checkbox" value="" id="{{ c.name }}">
-                      <label class="form-check-label" for="{{ c.name }}">{{ c.name }}</label>
-                    </div>
-                {% endfor %}
+<!--                {% for c in cats %}-->
+<!--                    <div class="form-check">-->
+<!--                      <input class="form-check-input" type="checkbox" value="" id="{{ c.name }}">-->
+<!--                      <label class="form-check-label" for="{{ c.name }}">{{ c.name }}</label>-->
+<!--                    </div>-->
+<!--                {% endfor %}-->
 
-                <h5>Коллекции изображений</h5>
-                {% for c in img_collection %}
-                    <div class="form-check">
-                      <input class="form-check-input" type="checkbox" value="" id="{{ c.weight }}">
-                      <label class="form-check-label" for="{{ c.weight }}">{{ c.weight }}</label>
-                    </div>
-                {% endfor %}
+<!--                <h5>Коллекции изображений</h5>-->
+<!--                {% for c in img_collection %}-->
+<!--                    <div class="form-check">-->
+<!--                      <input class="form-check-input" type="checkbox" value="" id="{{ c.weight }}">-->
+<!--                      <label class="form-check-label" for="{{ c.weight }}">{{ c.weight }}</label>-->
+<!--                    </div>-->
+<!--                {% endfor %}-->
 
                 {{ form_filter.as_p }}
                 <button type="submit" class="btn btn-secondary">Показать</button>

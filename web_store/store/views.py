@@ -57,6 +57,10 @@ class StoreHome(ListView):
                     products_shockproof = Product.objects.filter(category_id__name='Чехол противоударный')
                 if form.cleaned_data['cat_silicon']:
                     products_silicon = Product.objects.filter(category_id__name='Чехол силиконовый')
+                if form.cleaned_data['col_animals']:
+                    products_animals = Product.objects.filter(category_id__name='Чехол силиконовый')
+
+
                 products = list(chain(products_plastic, products_shockproof, products_silicon))
 
                 return products

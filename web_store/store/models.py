@@ -59,6 +59,7 @@ class ProductToPhone(models.Model):
     phone_id = models.ForeignKey('Phone', on_delete=models.PROTECT, verbose_name='ID телефона')
 
     class Meta:
+
         UniqueConstraint(fields=['product_id', 'phone_id'], name='id_product_to_phone')
         # unique_together = (('key1', 'key2'),) - устаревший вариант
 
