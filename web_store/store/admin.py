@@ -26,7 +26,7 @@ class CategoryAdmin(admin.ModelAdmin):
 
 
 class PropertyAdmin(admin.ModelAdmin):
-    list_display = ('id', 'name')
+    list_display = ('id', 'name', 'product_id', 'value', 'unit')
     list_display_links = ('id', 'name')
     search_fields = ('name',)
 
@@ -35,15 +35,15 @@ class ProductToPhoneAdmin(admin.ModelAdmin):
     list_display_links = ('product_id',)
 
 
-class ValueAdmin(admin.ModelAdmin):
-    list_display = ('id', 'property_id', 'weight')
-    list_display_links = ('id',)
-    search_fields = ('weight',)
+# class ValueAdmin(admin.ModelAdmin):
+#     list_display = ('id', 'property_id', 'weight')
+#     list_display_links = ('id',)
+#     search_fields = ('weight',)
 
 
-class PropertyToProductAdmin(admin.ModelAdmin):
-    list_display = ('product_id', 'property_id')
-    list_display_links = ('product_id',)
+# class PropertyToProductAdmin(admin.ModelAdmin):
+#     list_display = ('product_id', 'property_id')
+#     list_display_links = ('product_id',)
 
 
 class StorageAdmin(admin.ModelAdmin):
@@ -73,9 +73,10 @@ admin.site.register(Category, CategoryAdmin)
 admin.site.register(Phone, PhoneAdmin)
 admin.site.register(ProductToPhone, ProductToPhoneAdmin)
 admin.site.register(Property, PropertyAdmin)
-admin.site.register(Value, ValueAdmin)
-admin.site.register(PropertyToProduct, PropertyToProductAdmin)
 admin.site.register(Storage, StorageAdmin)
 admin.site.register(Customer, CustomerAdmin)
 admin.site.register(Cart, CartAdmin)
 admin.site.register(ProductToCart, ProductToCartAdmin)
+
+#admin.site.register(Value, ValueAdmin)
+# admin.site.register(PropertyToProduct, PropertyToProductAdmin)

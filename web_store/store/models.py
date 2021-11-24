@@ -69,6 +69,10 @@ class ProductToPhone(models.Model):
 
 class Property(models.Model):
     name = models.CharField(max_length=200, db_index=True, verbose_name='Наименование свойства')
+    product_id = models.ForeignKey('Product', on_delete=models.PROTECT, verbose_name='ID продукта', default=1)
+    value = models.CharField(max_length=100, db_index=True, verbose_name='Значение', null=True)
+    unit = models.CharField(max_length=20, verbose_name='Ед. измерения', null=True)
+
 
     class Meta:
         ordering = ('name',)
@@ -79,27 +83,27 @@ class Property(models.Model):
         return self.name
 
 
-class Value(models.Model):
-    property_id = models.ForeignKey('Property', on_delete=models.PROTECT, verbose_name='ID свойства')
-    weight = models.CharField(max_length=200, db_index=True, verbose_name='Вес значения')
+# class Value(models.Model):
+#     property_id = models.ForeignKey('Property', on_delete=models.PROTECT, verbose_name='ID свойства')
+#     weight = models.CharField(max_length=200, db_index=True, verbose_name='Вес значения')
+#
+#     class Meta:
+#         ordering = ('property_id',)
+#         verbose_name = 'Значение свойства'
+#         verbose_name_plural = 'Значения свойств'
 
-    class Meta:
-        ordering = ('property_id',)
-        verbose_name = 'Значение свойства'
-        verbose_name_plural = 'Значения свойств'
 
-
-class PropertyToProduct(models.Model):
-    product_id = models.ForeignKey('Product', on_delete=models.PROTECT, primary_key=True, verbose_name='ID товара')
-    property_id = models.ForeignKey('Property', on_delete=models.PROTECT, verbose_name='ID свойства')
-
-    class Meta:
-        UniqueConstraint(fields=['product_id', 'property_id'], name='id_property_to_product')
-        # unique_together = (('key1', 'key2'),) - устаревший вариант
-
-        ordering = ('product_id',)
-        verbose_name = 'Свойство-Продукт'
-        verbose_name_plural = 'Свойства-Продукты'
+# class PropertyToProduct(models.Model):
+#     product_id = models.ForeignKey('Product', on_delete=models.PROTECT, primary_key=True, verbose_name='ID товара')
+#     property_id = models.ForeignKey('Property', on_delete=models.PROTECT, verbose_name='ID свойства')
+#
+#     class Meta:
+#         UniqueConstraint(fields=['product_id', 'property_id'], name='id_property_to_product')
+#         # unique_together = (('key1', 'key2'),) - устаревший вариант
+#
+#         ordering = ('product_id',)
+#         verbose_name = 'Свойство-Продукт'
+#         verbose_name_plural = 'Свойства-Продукты'
 
 
 class Storage(models.Model):
