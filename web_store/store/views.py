@@ -76,12 +76,22 @@ class StoreHome(ListView):
                     products_labels = Product.objects.filter(property__value='Надписи')
 
                 prod_cat = list(chain(products_plastic, products_shockproof, products_silicon))
-                prod_col = list(chain(products_animals, products_cartoons, products_games, products_anime, products_labels))
+                prod_col = list(
+                    chain(products_animals, products_cartoons, products_games, products_anime, products_labels))
 
+                if len(prod_cat) == 0:
+                    products = prod_col
+                else:
+                    if len(prod_col) == 0:
+                        products = prod_cat
+                    else:
+                        products = []
+                        for cat in prod_cat:
+                            for col in prod_col:
+                                if cat == col:
+                                    products.append(cat)
                 return products
-            # return Product.objects.filter(name__icontains=form.cleaned_data['name'])
             else:
-
                 return Product.objects.all()
 
 
