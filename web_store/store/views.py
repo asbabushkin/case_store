@@ -1,9 +1,10 @@
+from itertools import chain
+
 from django.http import HttpResponse, HttpResponseNotFound
 from django.shortcuts import render, get_object_or_404
-from django.views.generic import ListView, TemplateView
-from .models import *
+from django.views.generic import ListView
+
 from .forms import *
-from itertools import chain
 
 # Create your views here.
 
@@ -27,7 +28,6 @@ class StoreHome(ListView):
     template_name = 'store/index.html'
     context_object_name = 'products'
 
-
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
 
@@ -35,11 +35,10 @@ class StoreHome(ListView):
         phone_brands = list(set(phone_brands))
         phone_brands.sort()
 
-
         context['phone_brands'] = phone_brands
         context['cats'] = Category.objects.values('name')
         context['phones'] = Phone.objects.all()
-        context['img_collection'] = Value.objects.all()
+        context['img_collection'] = Property.objects.all()
         context['title'] = 'Главная страница'
         context['form_filter'] = ProductFilterForm
         return context
@@ -50,7 +49,15 @@ class StoreHome(ListView):
             products_plastic = []
             products_shockproof = []
             products_silicon = []
-            if form.cleaned_data['cat_plastic'] or form.cleaned_data['cat_shockproof'] or form.cleaned_data['cat_silicon']:
+            products_animals = []
+            products_cartoons = []
+            products_games = []
+            products_anime = []
+            products_labels = []
+
+            if form.cleaned_data['cat_plastic'] or form.cleaned_data['cat_shockproof'] or form.cleaned_data[
+                'cat_silicon'] or form.cleaned_data['col_animals'] or form.cleaned_data['col_cartoons'] or \
+                    form.cleaned_data['col_games'] or form.cleaned_data['col_anime'] or form.cleaned_data['col_labels']:
                 if form.cleaned_data['cat_plastic']:
                     products_plastic = Product.objects.filter(category_id__name='Чехол пластиковый')
                 if form.cleaned_data['cat_shockproof']:
@@ -58,20 +65,24 @@ class StoreHome(ListView):
                 if form.cleaned_data['cat_silicon']:
                     products_silicon = Product.objects.filter(category_id__name='Чехол силиконовый')
                 if form.cleaned_data['col_animals']:
-                    products_animals = Product.objects.filter(category_id__name='Чехол силиконовый')
+                    products_animals = Product.objects.filter(property__value='Животные')
+                if form.cleaned_data['col_cartoons']:
+                    products_cartoons = Product.objects.filter(property__value='Мультфильмы')
+                if form.cleaned_data['col_games']:
+                    products_games = Product.objects.filter(property__value='Игры')
+                if form.cleaned_data['col_anime']:
+                    products_anime = Product.objects.filter(property__value='Аниме')
+                if form.cleaned_data['col_labels']:
+                    products_labels = Product.objects.filter(property__value='Надписи')
 
-
-                products = list(chain(products_plastic, products_shockproof, products_silicon))
+                prod_cat = list(chain(products_plastic, products_shockproof, products_silicon))
+                prod_col = list(chain(products_animals, products_cartoons, products_games, products_anime, products_labels))
 
                 return products
             # return Product.objects.filter(name__icontains=form.cleaned_data['name'])
             else:
 
                 return Product.objects.all()
-
-
-
-
 
 
 # функциональный подход
@@ -103,34 +114,32 @@ class StoreHome(ListView):
 #         products = Product.objects.all()
 
 
+# if form_filter.cleaned_data['min_price']:
+#     products = products.filter(price__gte=form_filter.cleaned_data['min_price'])
+# if form_filter.cleaned_data['max_price']:
+#     products = products.filter(price__lte=form_filter.cleaned_data['max_price'])
+# elif form_filter.cleaned_data['cat_plastic']:
+#     products = products.filter(category_id__name='Чехол пластиковый')
+#
+# # if form_filter.cleaned_data['cat_plastic'] or form_filter.cleaned_data['cat_shockproof'] or form_filter.cleaned_data['cat_silicon']:
+# #     products = products.filter(Q(category_id__name='Чехол пластиковый') | Q(category_id__name='Чехол противоударный') | Q(category_id__name='Чехол силиконовый')).distinct
+# elif form_filter.cleaned_data['cat_shockproof']:
+#     products = products.filter(category_id__name='Чехол противоударный')
+# elif form_filter.cleaned_data['cat_silicon']:
+#     products = products.filter(category_id__name='Чехол силиконовый')
 
-
-        # if form_filter.cleaned_data['min_price']:
-        #     products = products.filter(price__gte=form_filter.cleaned_data['min_price'])
-        # if form_filter.cleaned_data['max_price']:
-        #     products = products.filter(price__lte=form_filter.cleaned_data['max_price'])
-        # elif form_filter.cleaned_data['cat_plastic']:
-        #     products = products.filter(category_id__name='Чехол пластиковый')
-        #
-        # # if form_filter.cleaned_data['cat_plastic'] or form_filter.cleaned_data['cat_shockproof'] or form_filter.cleaned_data['cat_silicon']:
-        # #     products = products.filter(Q(category_id__name='Чехол пластиковый') | Q(category_id__name='Чехол противоударный') | Q(category_id__name='Чехол силиконовый')).distinct
-        # elif form_filter.cleaned_data['cat_shockproof']:
-        #     products = products.filter(category_id__name='Чехол противоударный')
-        # elif form_filter.cleaned_data['cat_silicon']:
-        #     products = products.filter(category_id__name='Чехол силиконовый')
-
-    # context = {
-    #     'cats': cats,
-    #     'phones': phones,
-    #     'products': products,
-    #     'img_collection': img_collection,
-    #     'phone_brands': phone_brands,
-    #     'menu': menu,
-    #     'title': 'Главная страница',
-    #     'form_filter': form_filter,
-    # }
-    #
-    # return render(request, 'store/index.html', context=context)
+# context = {
+#     'cats': cats,
+#     'phones': phones,
+#     'products': products,
+#     'img_collection': img_collection,
+#     'phone_brands': phone_brands,
+#     'menu': menu,
+#     'title': 'Главная страница',
+#     'form_filter': form_filter,
+# }
+#
+# return render(request, 'store/index.html', context=context)
 
 
 def about(request):
