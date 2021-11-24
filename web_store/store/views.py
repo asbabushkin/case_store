@@ -31,12 +31,7 @@ class StoreHome(ListView):
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
 
-        phone_brands = list(Phone.objects.values_list('brand', flat=True))
-        phone_brands = list(set(phone_brands))
-        phone_brands.sort()
-
-        context['phone_brands'] = phone_brands
-        context['cats'] = Category.objects.values('name')
+        context['phone_brands'] = list(Phone.objects.values_list('brand', flat=True).distinct().order_by('brand'))
         context['phones'] = Phone.objects.all()
         context['img_collection'] = Property.objects.all()
         context['title'] = 'Главная страница'
@@ -46,6 +41,7 @@ class StoreHome(ListView):
     def get_queryset(self):
         form = self.form_filter(self.request.GET)
         if form.is_valid():
+            products_phone = []
             products_plastic = []
             products_shockproof = []
             products_silicon = []
@@ -54,6 +50,7 @@ class StoreHome(ListView):
             products_games = []
             products_anime = []
             products_labels = []
+
 
             if form.cleaned_data['cat_plastic'] or form.cleaned_data['cat_shockproof'] or form.cleaned_data[
                 'cat_silicon'] or form.cleaned_data['col_animals'] or form.cleaned_data['col_cartoons'] or \

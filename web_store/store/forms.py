@@ -2,7 +2,7 @@ from django import forms
 from .models import *
 
 class ProductFilterForm(forms.Form):
-    phone_name = forms.HiddenInput()
+    phone_name = forms.CharField(max_length=30, required=False)
     cat_plastic = forms.BooleanField(label='Чехлы пластиковые', required=False)
     cat_shockproof = forms.BooleanField(label='Чехлы противоударные', required=False)
     cat_silicon = forms.BooleanField(label='Чехлы силиконовые', required=False)
@@ -11,6 +11,12 @@ class ProductFilterForm(forms.Form):
     col_games = forms.BooleanField(label='Игры', required=False)
     col_anime = forms.BooleanField(label='Аниме', required=False)
     col_labels = forms.BooleanField(label='Надписи', required=False)
+
+    # , widget = forms.HiddenInput()
+
+
+
+
 
 
 

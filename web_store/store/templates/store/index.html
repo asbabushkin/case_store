@@ -24,91 +24,35 @@
         </ul>
     </li>
 {% endfor %}
-
 </ul>
 </div>
 <!--конец навбара-->
+
 
 <div class="album py-5 bg-light" id="phone-selected">
     <h2  id="h2-phone-selected" align="center">Выберите модель телефона </h2>
 </div>
 
 
-<!--# плитка категорий-->
-
-<!--<div class="album py-5 bg-light">-->
-<!--    <div class="container">-->
-<!--        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">-->
-<!--            {% for c in cats %}-->
-<!--                <div class="col">-->
-<!--                    <div class="card shadow-sm">-->
-<!--                        {% if c.image %}-->
-<!--                            <p><img src='{{ c.image.url }}'></p>-->
-
-<!--                        {% else %}-->
-<!--                            <svg class="bd-placeholder-img card-img-top" width="100%" height="225"-->
-<!--                             xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail"-->
-<!--                             preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title>-->
-<!--                            <rect width="100%" height="100%" fill="#55595c"/>-->
-<!--                            <text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text>-->
-<!--                            </svg>-->
-<!--                        {% endif %}-->
-
-<!--                        <div class="card-body">-->
-<!--                            <p class="card-text">{{ c.name }}</p>-->
-<!--                            <div class="d-flex justify-content-between align-items-center">-->
-<!--                                <div class="btn-group">-->
-<!--                                    <button type="button" class="btn btn-sm btn-outline-secondary">View</button>-->
-<!--                                    <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>-->
-<!--                                </div>-->
-<!--                                <small class="text-muted">9 mins</small>-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--            {% endfor %}-->
-<!--        </div>-->
-<!--    </div>-->
-<!--</div>-->
-
-
-
 
 <div id="card-side-menu" style="display: flex; justify-content: flex-start">
 
     <!--сайдбар-->
-    <form method="GET">
-        {% csrf_token %}
-        <div id="sidebar">
+    <div id="sidebar">
+        <form method="GET">
+            {% csrf_token %}
             <nav class="nav flex-column">
                 <h5 id="side-bar-phone-name">Телефон не выбран</h5>
                 <h5>Категории</h5>
-<!--                {% for c in cats %}-->
-<!--                    <div class="form-check">-->
-<!--                      <input class="form-check-input" type="checkbox" value="" id="{{ c.name }}">-->
-<!--                      <label class="form-check-label" for="{{ c.name }}">{{ c.name }}</label>-->
-<!--                    </div>-->
-<!--                {% endfor %}-->
-
-<!--                <h5>Коллекции изображений</h5>-->
-<!--                {% for c in img_collection %}-->
-<!--                    <div class="form-check">-->
-<!--                      <input class="form-check-input" type="checkbox" value="" id="{{ c.weight }}">-->
-<!--                      <label class="form-check-label" for="{{ c.weight }}">{{ c.weight }}</label>-->
-<!--                    </div>-->
-<!--                {% endfor %}-->
 
                 {{ form_filter.as_p }}
                 <button type="submit" class="btn btn-secondary">Показать</button>
-
             </nav>
-
-        </div>
-    </form>
+        </form>
+    </div>
 
 
     <!--карточки товара-->
-
     <div class="album py-5 bg-light">
         <div class="container">
             <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
@@ -117,7 +61,6 @@
                         <div class="card shadow-sm">
                             {% if p.image %}
                                 <p><img width="360px" height="360px" src='{{ p.image.url }}'></p>
-
                             {% else %}
                                 <svg class="bd-placeholder-img card-img-top" width="100%" height="225"
                                  xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail"
@@ -142,10 +85,7 @@
             </div>
         </div>
     </div>
-
 </div>
-
-
 
 {% endblock %}
 
