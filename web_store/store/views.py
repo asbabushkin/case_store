@@ -2,7 +2,7 @@ from itertools import chain
 
 from django.http import HttpResponse, HttpResponseNotFound
 from django.shortcuts import render, get_object_or_404
-from django.views.generic import ListView
+from django.views.generic import ListView, DetailView
 
 from .forms import *
 
@@ -19,6 +19,7 @@ menu = [
     {'title': 'Корзина', 'url_name': 'cart'},
     {'title': 'Категория', 'url_name': 'category'},
     {'title': 'Телефон', 'url_name': 'phone'},
+    {'title': 'Логин', 'url_name': 'login'},
 ]
 
 
@@ -121,6 +122,23 @@ class StoreHome(ListView):
                 print('nothing')
                 return Product.objects.all()
 
+class ProductPage(DetailView):
+    model = Product
+    template_name = 'store/product.html'
+    slug_url_kwarg = 'product_slug'
+    context_object_name = 'product'
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['name'] = context['product']
+        context['menu'] = menu
+        return context
+
+
+class CartPage(ListView):
+    model = Cart
+    template_name = 'store/cart.html'
+
 
 
 def about(request):
@@ -172,3 +190,6 @@ def product_page(request, product_slug):
 
 def pageNotFound(request, exception):
     return HttpResponseNotFound('<h1>Страница не найдена</h1>')
+
+def login(request):
+    return HttpResponse('Войти')

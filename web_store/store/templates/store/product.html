@@ -1,0 +1,39 @@
+{% extends 'store/base.html' %}
+{% block content %}
+
+<div class="row featurette" style="margin-top: 20px">
+    <div class="col-md-7 order-md-2">
+        <h2 class="featurette-heading">Чехол "{{product.name}}" <span class="text-muted">Ждет тебя!</span></h2>
+        <!--    <p class="lead">Another featurette? Of course. More placeholder content here to give you an idea of how this layout would work with some actual real-world content in place.</p>-->
+        <p class="lead">{{product.description}}
+        <p></p>
+        <p class="lead">Яркий, стильный, приятный на ощупь, этот чехол защитит смартфон и будет радовать вас долгое
+            время. Изготовлен из высокотехнологичного TPU полимера премиум класса. Он не выгорает на солнце, обладает
+            повышеной износостойкостью, обеспечивает удобный доступ к технологическим разъёмам и функциональным
+            клавишам. Чехол не скользит в руках и обеспечивает полную защиту Вашего смартфона от пыли, ударов, царапин и
+            других механических повреждений. Эксклюзивный принт разработан дизайнерами студии Артемия Лебедева. Купив
+            этот чехол, вы получите надежную защиту смартфона, а так же стильный аксессуар, который позволит подчеркнуть
+            вам свою индивидуальность!
+        <p></p>
+        <div class="d-flex justify-content-between align-items-center" style="margin-top: 50px">
+            <button type="button" class="btn btn-secondary">В корзину!</button>
+            <button type="button" class="btn btn-outline-secondary">Назад</button>
+
+        </div>
+    </div>
+    <div class="col-md-5 order-md-1">
+        {% if product.image %}
+        <p><img width="500px" height="500px" src='{{ product.image.url }}'></p>
+        {% else %}
+        <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500"
+             height="500" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 500x500"
+             preserveAspectRatio="xMidYMid slice" focusable="false"><title>Изображение {{product.name}}</title>
+            <rect width="100%" height="100%" fill="#eee"/>
+            <text x="50%" y="50%" fill="#aaa" dy=".3em">500x500</text>
+        </svg>
+        {% endif %}
+
+    </div>
+</div>
+
+{% endblock %}

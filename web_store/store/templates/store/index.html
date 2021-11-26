@@ -74,7 +74,10 @@
 
                                 <p class="card-text">{{p.category_id}} "{{ p.name }}"</p>
                                 <div class="d-flex justify-content-between align-items-center">
-                                    <button type="button" class="btn btn-sm btn-outline-secondary">Подробнее</button>
+<!--                                    <a href="/product/{{ p.slug }}">-->
+                                    <a href="{{ p.get_absolute_url }}">
+                                        <button type="button" class="btn btn-sm btn-outline-secondary">Подробнее</button>
+                                    </a>
                                     <button type="button" class="btn btn-sm btn-outline-secondary">В корзину</button>
 
                                 </div>

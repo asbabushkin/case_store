@@ -33,7 +33,9 @@
             </form>
 
             <div class="text-end">
-                <button type="button" class="btn btn-outline-light me-2">Login</button>
+                <a href="{% url 'login' %}">
+                    <button type="button" class="btn btn-outline-light me-2">Войти</button>
+                </a>
                 <button type="button" class="btn btn-warning">Sign-up</button>
 
 
@@ -65,6 +67,7 @@
         <li><a href="{% url 'about_payment' %}" class="nav-link px-2 text-white">Оплата</a></li>
         <li><a href="{% url 'about' %}" class="nav-link px-2 text-white">О нас</a></li>
         <li><a href="{% url 'faq' %}" class="nav-link px-2 text-white">FAQs</a></li>
+
     </ul>
     <p class="text-center text-muted">&copy; 2021 Case Story, Inc</p>
 </footer>

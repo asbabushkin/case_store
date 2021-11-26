@@ -2,7 +2,7 @@ from django import forms
 from .models import *
 
 class ProductFilterForm(forms.Form):
-    phone_name = forms.CharField(max_length=30, required=False)
+    phone_name = forms.CharField(max_length=30, required=False, widget=forms.HiddenInput())
     cat_plastic = forms.BooleanField(label='Чехлы пластиковые', required=False)
     cat_shockproof = forms.BooleanField(label='Чехлы противоударные', required=False)
     cat_silicon = forms.BooleanField(label='Чехлы силиконовые', required=False)
