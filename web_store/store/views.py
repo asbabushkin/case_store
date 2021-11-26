@@ -50,11 +50,22 @@ class StoreHome(ListView):
             products_games = []
             products_anime = []
             products_labels = []
-
-
-            if form.cleaned_data['cat_plastic'] or form.cleaned_data['cat_shockproof'] or form.cleaned_data[
-                'cat_silicon'] or form.cleaned_data['col_animals'] or form.cleaned_data['col_cartoons'] or \
+            phone_id_list = []
+            if form.cleaned_data['phone_name'] or form.cleaned_data['cat_plastic'] or form.cleaned_data[
+                'cat_shockproof'] or form.cleaned_data['cat_silicon'] or form.cleaned_data['col_animals'] or form.cleaned_data['col_cartoons'] or \
                     form.cleaned_data['col_games'] or form.cleaned_data['col_anime'] or form.cleaned_data['col_labels']:
+
+                if form.cleaned_data['phone_name']:
+                    #products_phone = ProductToPhone.objects.select_related('product_id', 'phone_id').filter(phone_id__model='iPhone11').values('product_id__pk', 'product_id__category_id', 'product_id__name', 'product_id__slug', 'product_id__image', 'product_id__description', 'product_id__price')
+                    products_phone = ProductToPhone.objects.select_related('product_id', 'phone_id').filter(
+                        phone_id__model=form.cleaned_data['phone_name']).values('product_id__pk')
+
+                    for p in products_phone:
+                        ph = p.get('product_id__pk')
+                        phone_id_list.append(ph)
+
+                    products_phone = Product.objects.filter(pk__in=phone_id_list)
+
                 if form.cleaned_data['cat_plastic']:
                     products_plastic = Product.objects.filter(category_id__name='Чехол пластиковый')
                 if form.cleaned_data['cat_shockproof']:
@@ -72,81 +83,44 @@ class StoreHome(ListView):
                 if form.cleaned_data['col_labels']:
                     products_labels = Product.objects.filter(property__value='Надписи')
 
-                prod_cat = list(chain(products_plastic, products_shockproof, products_silicon))
-                prod_col = list(
-                    chain(products_animals, products_cartoons, products_games, products_anime, products_labels))
+                prod_cat = set(list(chain(products_plastic, products_shockproof, products_silicon)))
+                prod_col = set(list(chain(products_animals, products_cartoons, products_games, products_anime, products_labels)))
+                products_phone = set(products_phone)
 
                 if len(prod_cat) == 0:
-                    products = prod_col
-                else:
                     if len(prod_col) == 0:
-                        products = prod_cat
+                        if len(products_phone) > 0:
+                            products = products_phone
+                            print('только телефоны')
                     else:
-                        products = []
-                        for cat in prod_cat:
-                            for col in prod_col:
-                                if cat == col:
-                                    products.append(cat)
+                        if len(products_phone) > 0:
+                            products =products_phone.intersection(prod_col)
+                            print('телефоны и коллекции')
+                        else:
+                            products = prod_col
+                            print('collections only')
+
+                else:
+                    if len(prod_col) > 0:
+                        if len(products_phone) > 0:
+                            products = prod_cat.intersection(prod_col, products_phone)
+                            print('categories, collection, phones')
+                        else:
+                            products = prod_cat.intersection(prod_col)
+                            print('categories, collections')
+                    else:
+                        if len(products_phone) > 0:
+                            products = prod_cat.intersection(products_phone)
+                            print('categories, phones')
+                        else:
+                            products = prod_cat
+                            print('categories only')
+
                 return products
             else:
+                print('nothing')
                 return Product.objects.all()
 
-
-# функциональный подход
-# def index(request):
-#     cats = Category.objects.all()
-#     phones = Phone.objects.all()
-#     products = Product.objects.all()
-#     img_collection = Value.objects.all()
-#     phone_brands = []
-#     for p in phones:
-#         if p.brand not in phone_brands:
-#             phone_brands.append(p.brand)
-#     phone_brands.sort()
-#
-#     form_filter = ProductFilterForm(request.GET)
-#     if form_filter.is_valid():
-#         products_plastic = []
-#         products_shockproof = []
-#         products_silicon = []
-#         if form_filter.cleaned_data['cat_plastic'] or form_filter.cleaned_data['cat_shockproof'] or form_filter.cleaned_data['cat_silicon']:
-#             if form_filter.cleaned_data['cat_plastic']:
-#                 products_plastic = products.filter(category_id__name='Чехол пластиковый')
-#             if form_filter.cleaned_data['cat_shockproof']:
-#                 products_shockproof = products.filter(category_id__name='Чехол противоударный')
-#             if form_filter.cleaned_data['cat_silicon']:
-#                 products_silicon = products.filter(category_id__name='Чехол силиконовый')
-#         products = list(chain(products_plastic, products_shockproof, products_silicon))
-#     else:
-#         products = Product.objects.all()
-
-
-# if form_filter.cleaned_data['min_price']:
-#     products = products.filter(price__gte=form_filter.cleaned_data['min_price'])
-# if form_filter.cleaned_data['max_price']:
-#     products = products.filter(price__lte=form_filter.cleaned_data['max_price'])
-# elif form_filter.cleaned_data['cat_plastic']:
-#     products = products.filter(category_id__name='Чехол пластиковый')
-#
-# # if form_filter.cleaned_data['cat_plastic'] or form_filter.cleaned_data['cat_shockproof'] or form_filter.cleaned_data['cat_silicon']:
-# #     products = products.filter(Q(category_id__name='Чехол пластиковый') | Q(category_id__name='Чехол противоударный') | Q(category_id__name='Чехол силиконовый')).distinct
-# elif form_filter.cleaned_data['cat_shockproof']:
-#     products = products.filter(category_id__name='Чехол противоударный')
-# elif form_filter.cleaned_data['cat_silicon']:
-#     products = products.filter(category_id__name='Чехол силиконовый')
-
-# context = {
-#     'cats': cats,
-#     'phones': phones,
-#     'products': products,
-#     'img_collection': img_collection,
-#     'phone_brands': phone_brands,
-#     'menu': menu,
-#     'title': 'Главная страница',
-#     'form_filter': form_filter,
-# }
-#
-# return render(request, 'store/index.html', context=context)
 
 
 def about(request):
