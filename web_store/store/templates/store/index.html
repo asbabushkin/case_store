@@ -14,7 +14,6 @@
             {% for phone in phones %}
                 {% if phone.brand == brand %}
                     <li><a class="dropdown-item" id="{{ phone.model }}" href="#">{{ phone.model }}</a></li>
-<!--                    <li><a class="dropdown-item" href="{% url 'phone' %}">{{ phone.model }}</a></li>-->
                 {% endif %}
             {% endfor %}
             <li>

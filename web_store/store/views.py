@@ -127,17 +127,28 @@ class ProductPage(DetailView):
     template_name = 'store/product.html'
     slug_url_kwarg = 'product_slug'
     context_object_name = 'product'
+    add_to_cart_form = AddToCartForm
+
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
         context['name'] = context['product']
         context['menu'] = menu
+        context['add_to_cart_form'] = AddToCartForm
         return context
 
 
 class CartPage(ListView):
     model = Cart
     template_name = 'store/cart.html'
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['name'] = context['product']
+        context['menu'] = menu
+        context['add_to_cart_form'] = AddToCartForm
+        return context
+
 
 
 

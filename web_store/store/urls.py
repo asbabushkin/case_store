@@ -11,7 +11,6 @@ urlpatterns = [
     path('about_payment/', about_payment, name='about_payment'),
     path('faq/', faq, name='faq'),
     path('personal_account/', personal_account, name='personal_account'),
-    #path('cart/', cart, name='cart'),
     path('category/', category, name='category'),
     path('phone/', phone, name='phone'),
     path('login/', login, name='login'),

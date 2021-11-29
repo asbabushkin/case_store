@@ -136,19 +136,24 @@ class Customer(models.Model):
 class Cart(models.Model):
     customer_id = models.ForeignKey('Customer', on_delete=models.PROTECT, unique=True, verbose_name='ID покупателя')
 
+
+
     class Meta:
         ordering = ('id',)
         verbose_name = 'Корзина'
         verbose_name_plural = 'Корзины'
 
 
+
 class ProductToCart(models.Model):
     cart_id = models.ForeignKey('Cart', primary_key=True, on_delete=models.PROTECT, verbose_name='ID корзины')
     product_id = models.ForeignKey('Product', on_delete=models.PROTECT, verbose_name='ID товара')
 
+
+
+
     class Meta:
         UniqueConstraint(fields=['cart_id', 'product_id'], name='id_product_to_cart')
-
         ordering = ('cart_id',)
         verbose_name = 'Корзина-продукт'
         verbose_name_plural = 'Корзины-продукты'
