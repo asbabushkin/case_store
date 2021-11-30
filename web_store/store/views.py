@@ -5,7 +5,7 @@ from django.shortcuts import render, get_object_or_404
 from django.views.generic import ListView, DetailView
 
 from .forms import *
-
+from cart.forms import CartAddProductForm
 # Create your views here.
 
 
@@ -122,24 +122,24 @@ class StoreHome(ListView):
                 print('nothing')
                 return Product.objects.all()
 
-
-
 class ProductPage(DetailView):
     model = Product
     template_name = 'store/product.html'
     slug_url_kwarg = 'product_slug'
     context_object_name = 'product'
-    # add_to_cart_form = AddToCartForm
+    cart_product_form = CartAddProductForm()
+    #add_to_cart_form = AddToCartForm()
 
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
         context['name'] = context['product']
+        context['product'] = context['product']
         context['menu'] = menu
-        #context['add_to_cart_form'] = AddToCartForm
+        context['cart_product_form'] = CartAddProductForm
         return context
 
-
+#
 # class CartPage(ListView):
 #     model = Cart
 #     template_name = 'store/cart.html'
