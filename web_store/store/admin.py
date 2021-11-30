@@ -58,14 +58,14 @@ class CustomerAdmin(admin.ModelAdmin):
     search_fields = ('last_name',)
 
 
-class CartAdmin(admin.ModelAdmin):
-    list_display = ('id', 'customer_id')
-    list_display_links = ('id',)
+# class CartAdmin(admin.ModelAdmin):
+#     list_display = ('id', 'customer_id')
+#     list_display_links = ('id',)
 
 
-class ProductToCartAdmin(admin.ModelAdmin):
-    list_display = ('cart_id', 'product_id')
-    list_display_links = ('cart_id',)
+# class ProductToCartAdmin(admin.ModelAdmin):
+#     list_display = ('cart_id', 'product_id')
+#     list_display_links = ('cart_id',)
 
 
 admin.site.register(Product, ProductAdmin)
@@ -75,8 +75,10 @@ admin.site.register(ProductToPhone, ProductToPhoneAdmin)
 admin.site.register(Property, PropertyAdmin)
 admin.site.register(Storage, StorageAdmin)
 admin.site.register(Customer, CustomerAdmin)
-admin.site.register(Cart, CartAdmin)
-admin.site.register(ProductToCart, ProductToCartAdmin)
 
+
+
+# admin.site.register(Cart, CartAdmin)
+# admin.site.register(ProductToCart, ProductToCartAdmin)
 #admin.site.register(Value, ValueAdmin)
 # admin.site.register(PropertyToProduct, PropertyToProductAdmin)
