@@ -148,8 +148,8 @@ class Cart(models.Model):
 class ProductToCart(models.Model):
     cart_id = models.ForeignKey('Cart', primary_key=True, on_delete=models.PROTECT, verbose_name='ID корзины')
     product_id = models.ForeignKey('Product', on_delete=models.PROTECT, verbose_name='ID товара')
-
-
+    quantity = models.PositiveIntegerField('Количество', null=True)
+    price = models.DecimalField(max_digits=6, decimal_places=2, verbose_name='Цена', null=True)
 
 
     class Meta:
