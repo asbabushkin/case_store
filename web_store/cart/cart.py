@@ -1,5 +1,7 @@
 from decimal import Decimal
+
 from django.conf import settings
+
 from store.models import Product
 
 
@@ -55,9 +57,11 @@ class Cart(object):
         for product in products:
             self.cart[str(product.id)]['product'] = product
 
+        total_cart_value = 0
         for item in self.cart.values():
             item['price'] = Decimal(item['price'])
             item['total_price'] = item['price'] * item['quantity']
+            total_cart_value = total_cart_value + item['total_price']
             yield item
 
     def __len__(self):
@@ -65,6 +69,13 @@ class Cart(object):
         Подсчет всех товаров в корзине.
         """
         return sum(item['quantity'] for item in self.cart.values())
+
+    def get_total_price(self):
+        """
+        Подсчет стоимости товаров в корзине.
+        """
+        return sum(Decimal(item['price']) * item['quantity'] for item in
+                   self.cart.values())
 
     def clear(self):
         # удаление корзины из сессии

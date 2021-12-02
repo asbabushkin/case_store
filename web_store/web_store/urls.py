@@ -24,7 +24,8 @@ from web_store import settings
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    url(r'^cart/', include('cart.urls', namespace='cart')),
+    path('cart/', include('cart.urls'), name='cart'),
+    #url(r'^cart/', include('cart.urls', namespace='cart')),
     path('', include('store.urls'), name='store'),
 ]
 

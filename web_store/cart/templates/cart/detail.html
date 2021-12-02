@@ -4,6 +4,8 @@
     Your shopping cart
 {% endblock %}
 {% block content %}
+
+
     <h1>Ваша корзина</h1>
     <table class="cart">
         <thead>
@@ -41,13 +43,13 @@
         <tr class="total">
             <td>Итого:</td>
             <td colspan="4"></td>
-            <td class="num">${{ cart.get_total_price }}</td>
+            <td class="num">{{ cart.get_total_price }} руб.</td>
         </tr>
         </tbody>
     </table>
     <p class="text-right">
         <a href="{% url 'store:index' %}" class="button light">Продолжить покупки</a>
 <!--        вставить выше параметры фильтров для возврата к отфильтрованной странице-->
-        <a href="#" class="button">Оформить заказ</a>
+        <a href="{% url 'cart:buy'%}" class="button">Оформить заказ</a>
     </p>
 {% endblock %}
