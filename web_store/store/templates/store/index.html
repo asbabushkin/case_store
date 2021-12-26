@@ -34,10 +34,10 @@
 
 
 
-<div id="card-side-menu" style="display: flex; justify-content: flex-start">
+<div id="card-side-menu" class="album py-5 bg-light"  style=" display: flex; justify-content: flex-start; padding-left: 20px">
 
     <!--сайдбар-->
-    <div id="sidebar">
+    <div id="sidebar"  style="width: 25%">
         <form method="GET">
             {% csrf_token %}
             <nav class="nav flex-column">
@@ -60,7 +60,7 @@
                         <div class="card shadow-sm">
                             {% if p.image %}
                                 <a href="{{ p.get_absolute_url }}">
-                                    <p><img width="360px" height="360px" src='{{ p.image.url }}'></p>
+                                    <p><img width="100%" height="100%" src='{{ p.image.url }}'></p>
                                 </a>
                             {% else %}
                                 <svg class="bd-placeholder-img card-img-top" width="100%" height="225"
