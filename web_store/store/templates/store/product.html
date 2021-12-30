@@ -26,10 +26,13 @@
 <!--            </form>-->
 
             <p class="price">{{ product.price }}</p>
-            <form action= "{% url 'cart:cart_add' product.id %}" method="post">
+            <form id="cartForm" action= "{% url 'cart:cart_add' product.id %}" method="post">
                 {{ cart_product_form }}
                 {% csrf_token %}
-                <input type="submit" value="В корзину">
+<!--                <input type="submit" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" value="В корзину">-->
+
+
+                <input type="submit" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" value="В корзину">
             </form>
 
 
@@ -38,6 +41,7 @@
             </a>
 
         </div>
+
     </div>
     <div class="col-md-5 order-md-1">
         {% if product.image %}
@@ -52,6 +56,47 @@
         {% endif %}
 
     </div>
+
+        <!-- Модальное окно -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Товар добавлен</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>
+          </div>
+          <div class="modal-body">
+            <p>Товар добавлен в корзину.</p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Продолжить покупки</button>
+            <button type="button" class="btn btn-primary">Перейти в корзину</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
 </div>
+
+{% block javascript %}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+      $(document).ready(function () {
+          // отслеживаем событие отправки формы
+          $('#cartForm').submit(function () {
+              // создаем AJAX-вызов
+              $.ajax({
+                  data: $(this).serialize(), // получаем данные формы
+                  type: $(this).attr('method'), // GET или POST
+                  url: "{% url 'cart:cart_add' product.id %}",
+
+              });
+              return false;
+          });
+      })
+  </script>
+
+{% endblock javascript %}
 
 {% endblock %}
