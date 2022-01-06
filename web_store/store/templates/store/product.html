@@ -69,8 +69,12 @@
             <p>Товар добавлен в корзину.</p>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Продолжить покупки</button>
-            <button type="button" class="btn btn-primary">Перейти в корзину</button>
+              <a href="{% url 'store:index' %}">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Продолжить покупки</button>
+              </a>
+              <a href="{% url 'cart:cart_detail' %}">
+                <button type="button" class="btn btn-primary">Перейти в корзину</button>
+              </a>
           </div>
         </div>
       </div>
