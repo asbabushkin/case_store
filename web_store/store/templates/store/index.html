@@ -38,7 +38,7 @@
 
     <!--сайдбар-->
     <div id="sidebar"  style="width: 25%">
-        <form method="GET">
+        <form id="filterForm" method="GET">
             {% csrf_token %}
             <nav class="nav flex-column">
                 <h5 id="side-bar-phone-name">Телефон не выбран</h5>
@@ -95,5 +95,6 @@
 </div>
 
 {% endblock %}
+
 
 
