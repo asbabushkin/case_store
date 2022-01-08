@@ -42,6 +42,7 @@ class StoreHome(ListView):
     def get_queryset(self):
         form = self.form_filter(self.request.GET)
         if form.is_valid():
+            products = []
             products_phone = []
             products_plastic = []
             products_shockproof = []
