@@ -14,6 +14,34 @@ from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'loggers': {
+        'store': {
+            'handlers': ['file'],
+            'level': 'INFO',
+            'propagate': True,
+        }
+
+    },
+    'handlers': {
+        'file': {
+            'level': 'INFO',
+            'class': 'logging.FileHandler',
+            'filename': BASE_DIR / 'store' / 'logs' / 'log.log',
+            'formatter': 'myformatter',
+            'encoding': 'utf-8',
+        }
+    },
+    'formatters': {
+        'myformatter': {
+            'format': '[{levelname}] TIME: {asctime} IN -> {module} <- PID:{process:d} THID:{thread:d} --> {message}',
+            'style': '{'
+        }
+    }
+}
+
 
 
 # Quick-start development settings - unsuitable for production
