@@ -14,6 +14,34 @@ from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'loggers': {
+        'store': {
+            'handlers': ['file'],
+            'level': 'INFO',
+            'propagate': True,
+        }
+
+    },
+    'handlers': {
+        'file': {
+            'level': 'INFO',
+            'class': 'logging.FileHandler',
+            'filename': BASE_DIR / 'store' / 'logs' / 'log.log',
+            'formatter': 'myformatter',
+            'encoding': 'utf-8',
+        }
+    },
+    'formatters': {
+        'myformatter': {
+            'format': '[{levelname}] TIME: {asctime} IN -> {module} <- PID:{process:d} THID:{thread:d} --> {message}',
+            'style': '{'
+        }
+    }
+}
+
 
 
 # Quick-start development settings - unsuitable for production
@@ -25,7 +53,10 @@ SECRET_KEY = 'django-insecure-l0%r*f04*6uvl87=5qkosmw6)^j*7$!-f4g$i@8ca=sz4shbe*
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1']
+ALLOWED_HOSTS = [
+    # '127.0.0.1'
+    '*'
+]
 
 
 # Application definition
@@ -38,6 +69,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'store.apps.StoreConfig',
+    'cart',
+    'psycopg2',
 ]
 
 MIDDLEWARE = [
@@ -75,15 +108,18 @@ WSGI_APPLICATION = 'web_store.wsgi.application'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
 DATABASES = {
+    # 'default': {
+    #     'ENGINE': 'django.db.backends.postgresql_psycopg2',
+    #     'NAME': 'prod_db',
+    #     'USER': 'admin',
+    #     'PASSWORD': 'password',
+    #     'HOST': 'postgresdb',
+    #     'PORT': 5432
+
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
-        # 'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        # 'NAME': 'case_store',
-        # 'USER': 'admin_case_store',
-        # 'PASSWORD': 'myPassword',
-        # 'HOST': '127.0.0.1',
-        # 'PORT': '5432',
+
     }
 }
 
@@ -126,6 +162,7 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+#STATIC_ROOT = BASE_DIR / 'static'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
@@ -135,3 +172,4 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 
+CART_SESSION_ID = 'cart'

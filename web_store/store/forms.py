@@ -14,9 +14,9 @@ class ProductFilterForm(forms.Form):
 
     # , widget = forms.HiddenInput()
 
-class AddToCartForm(forms.Form):
-    Cart
-    quantity = forms.IntegerField(min_value=1, max_value=20, label='Количество')
+# class AddToCartForm(forms.Form):
+#     Cart
+#     quantity = forms.IntegerField(min_value=1, max_value=20, label='Количество')
 
 
 

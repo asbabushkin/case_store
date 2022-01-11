@@ -1,11 +1,15 @@
 from django.urls import path, re_path
+from django.conf.urls import url
 from .views import *
 
+
+app_name = 'store'
 urlpatterns = [
+
     # path('', index, name='index'),
     path('', StoreHome.as_view(), name='index'),
     path('product/<slug:product_slug>', ProductPage.as_view(), name='product_page'),
-    path('cart/', CartPage.as_view(), name='cart'),
+#    path('cart/', CartPage.as_view(), name='cart'),
     path('about/', about, name='about'),
     path('about_delivery/', about_delivery, name='about_delivery'),
     path('about_payment/', about_payment, name='about_payment'),
@@ -14,6 +18,7 @@ urlpatterns = [
     path('category/', category, name='category'),
     path('phone/', phone, name='phone'),
     path('login/', login, name='login'),
+    #path('case/<slug:product_slug>/', product_page, name='product_page'),
 
 
 ]

@@ -14,6 +14,7 @@ class Product(models.Model):
     description = models.TextField(blank=True, verbose_name='Описание товара')
     price = models.DecimalField(max_digits=6, decimal_places=2, verbose_name='Цена')
 
+
     class Meta:
         ordering = ('name',)
         verbose_name = 'Продукт'
@@ -23,7 +24,7 @@ class Product(models.Model):
         return self.name
 
     def get_absolute_url(self):
-        return reverse('product_page', kwargs={'product_slug': self.slug})
+        return reverse('store:product_page', kwargs={'product_slug': self.slug})
 
 
 class Category(models.Model):
@@ -133,28 +134,37 @@ class Customer(models.Model):
         return self.last_name
 
 
-class Cart(models.Model):
-    customer_id = models.ForeignKey('Customer', on_delete=models.PROTECT, unique=True, verbose_name='ID покупателя')
+'''
+Не удалять!
+'''
+
+
+# class Cart(models.Model):
+#     #customer_id = models.ForeignKey('Customer', on_delete=models.PROTECT, unique=True, verbose_name='ID покупателя', default=1)
+#     product_id = models.ForeignKey('Product', on_delete=models.PROTECT, verbose_name='ID товара')
+#     quantity = models.PositiveIntegerField('Количество', null=True)
+#     price = models.DecimalField(max_digits=6, decimal_places=2, verbose_name='Цена', null=True)
+#
+#
+#     class Meta:
+#         ordering = ('id',)
+#         verbose_name = 'Корзина'
+#         verbose_name_plural = 'Корзины'
 
 
 
-    class Meta:
-        ordering = ('id',)
-        verbose_name = 'Корзина'
-        verbose_name_plural = 'Корзины'
 
-
-
-class ProductToCart(models.Model):
-    cart_id = models.ForeignKey('Cart', primary_key=True, on_delete=models.PROTECT, verbose_name='ID корзины')
-    product_id = models.ForeignKey('Product', on_delete=models.PROTECT, verbose_name='ID товара')
-    quantity = models.PositiveIntegerField('Количество', null=True)
-    price = models.DecimalField(max_digits=6, decimal_places=2, verbose_name='Цена', null=True)
-
-
-    class Meta:
-        UniqueConstraint(fields=['cart_id', 'product_id'], name='id_product_to_cart')
-        ordering = ('cart_id',)
-        verbose_name = 'Корзина-продукт'
-        verbose_name_plural = 'Корзины-продукты'
-
+#
+# class ProductToCart(models.Model):
+#     cart_id = models.ForeignKey('Cart', primary_key=True, on_delete=models.PROTECT, verbose_name='ID корзины')
+#     product_id = models.ForeignKey('Product', on_delete=models.PROTECT, verbose_name='ID товара')
+#     quantity = models.PositiveIntegerField('Количество', null=True)
+#     price = models.DecimalField(max_digits=6, decimal_places=2, verbose_name='Цена', null=True)
+#
+#
+#     class Meta:
+#         UniqueConstraint(fields=['cart_id', 'product_id'], name='id_product_to_cart')
+#         ordering = ('cart_id',)
+#         verbose_name = 'Корзина-продукт'
+#         verbose_name_plural = 'Корзины-продукты'
+#

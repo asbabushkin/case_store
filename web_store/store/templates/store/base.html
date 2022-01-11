@@ -6,8 +6,8 @@
     <meta charset="UTF-8">
     <title> {{ title }}</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'store/css/style.css' %}">
 
-<!--    <script src="{% static 'store/js/script.js' %}"></script>-->
 </head>
 <body>
 
@@ -21,11 +21,11 @@
             </a>
 
             <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-                <li><a href="{% url 'index' %}" class="nav-link px-2 text-white">Главная</a></li>
-                <li><a href="{% url 'about_delivery' %}" class="nav-link px-2 text-white">Доставка</a></li>
-                <li><a href="{% url 'about_payment' %}" class="nav-link px-2 text-white">Оплата</a></li>
-                <li><a href="{% url 'about' %}" class="nav-link px-2 text-white">О нас</a></li>
-                <li><a href="{% url 'faq' %}" class="nav-link px-2 text-white">FAQs</a></li>
+                <li><a href="{% url 'store:index' %}" class="nav-link px-2 text-white">Главная</a></li>
+                <li><a href="{% url 'store:about_delivery' %}" class="nav-link px-2 text-white">Доставка</a></li>
+                <li><a href="{% url 'store:about_payment' %}" class="nav-link px-2 text-white">Оплата</a></li>
+                <li><a href="{% url 'store:about' %}" class="nav-link px-2 text-white">О нас</a></li>
+                <li><a href="{% url 'store:faq' %}" class="nav-link px-2 text-white">FAQs</a></li>
             </ul>
 
             <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
@@ -33,7 +33,7 @@
             </form>
 
             <div class="text-end">
-                <a href="{% url 'login' %}">
+                <a href="{% url 'store:login' %}">
                     <button type="button" class="btn btn-outline-light me-2">Войти</button>
                 </a>
                 <button type="button" class="btn btn-warning">Sign-up</button>
@@ -62,11 +62,11 @@
 
 <footer class="py-3 my-4">
     <ul class="nav justify-content-center border-bottom pb-3 mb-3">
-        <li><a href="{% url 'index' %}" class="nav-link px-2 text-white">Главная</a></li>
-        <li><a href="{% url 'about_delivery' %}" class="nav-link px-2 text-white">Доставка</a></li>
-        <li><a href="{% url 'about_payment' %}" class="nav-link px-2 text-white">Оплата</a></li>
-        <li><a href="{% url 'about' %}" class="nav-link px-2 text-white">О нас</a></li>
-        <li><a href="{% url 'faq' %}" class="nav-link px-2 text-white">FAQs</a></li>
+        <li><a href="{% url 'store:index' %}" class="nav-link px-2 text-white">Главная</a></li>
+        <li><a href="{% url 'store:about_delivery' %}" class="nav-link px-2 text-white">Доставка</a></li>
+        <li><a href="{% url 'store:about_payment' %}" class="nav-link px-2 text-white">Оплата</a></li>
+        <li><a href="{% url 'store:about' %}" class="nav-link px-2 text-white">О нас</a></li>
+        <li><a href="{% url 'store:faq' %}" class="nav-link px-2 text-white">FAQs</a></li>
 
     </ul>
     <p class="text-center text-muted">&copy; 2021 Case Story, Inc</p>

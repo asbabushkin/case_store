@@ -1,3 +1,4 @@
+import logging
 from itertools import chain
 
 from django.http import HttpResponse, HttpResponseNotFound
@@ -5,9 +6,10 @@ from django.shortcuts import render, get_object_or_404
 from django.views.generic import ListView, DetailView
 
 from .forms import *
-
+from cart.forms import CartAddProductForm
 # Create your views here.
 
+logger = logging.getLogger(__name__)
 
 menu = [
     {'title': 'Главная', 'url_name': 'index'},
@@ -37,11 +39,13 @@ class StoreHome(ListView):
         context['img_collection'] = Property.objects.all()
         context['title'] = 'Главная страница'
         context['form_filter'] = ProductFilterForm
+        logger.info('Main page downloaded!')
         return context
 
     def get_queryset(self):
         form = self.form_filter(self.request.GET)
         if form.is_valid():
+            products = []
             products_phone = []
             products_plastic = []
             products_shockproof = []
@@ -120,6 +124,7 @@ class StoreHome(ListView):
                 return products
             else:
                 print('nothing')
+                logger.warning('WARNING! No filters selected')
                 return Product.objects.all()
 
 class ProductPage(DetailView):
@@ -127,27 +132,30 @@ class ProductPage(DetailView):
     template_name = 'store/product.html'
     slug_url_kwarg = 'product_slug'
     context_object_name = 'product'
-    add_to_cart_form = AddToCartForm
+    cart_product_form = CartAddProductForm()
+    #add_to_cart_form = AddToCartForm()
 
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
         context['name'] = context['product']
+        context['product'] = context['product']
         context['menu'] = menu
-        context['add_to_cart_form'] = AddToCartForm
+        context['cart_product_form'] = CartAddProductForm
+        logger.info('Product page downloaded')
         return context
 
-
-class CartPage(ListView):
-    model = Cart
-    template_name = 'store/cart.html'
-
-    def get_context_data(self, *, object_list=None, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['name'] = context['product']
-        context['menu'] = menu
-        context['add_to_cart_form'] = AddToCartForm
-        return context
+#
+# class CartPage(ListView):
+#     model = Cart
+#     template_name = 'store/cart.html'
+#
+#     def get_context_data(self, *, object_list=None, **kwargs):
+#         context = super().get_context_data(**kwargs)
+#         context['name'] = context['product']
+#         context['menu'] = menu
+#         context['add_to_cart_form'] = AddToCartForm
+#         return context
 
 
 
