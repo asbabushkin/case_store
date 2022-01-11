@@ -1,3 +1,29 @@
 [WARNING] TIME: 2022-01-09 17:39:24,986 IN -> views <- PID:14860 THID:11944 --> WARNING! No filters selected
 [INFO] TIME: 2022-01-09 17:39:24,989 IN -> views <- PID:14860 THID:11944 --> Main page downloaded!
 [INFO] TIME: 2022-01-09 17:39:28,327 IN -> views <- PID:14860 THID:11944 --> Product page downloaded
+[WARNING] TIME: 2022-01-11 19:58:16,714 IN -> views <- PID:17488 THID:10756 --> WARNING! No filters selected
+[INFO] TIME: 2022-01-11 19:58:16,746 IN -> views <- PID:17488 THID:10756 --> Main page downloaded!
+[WARNING] TIME: 2022-01-11 20:09:49,154 IN -> views <- PID:9240 THID:964 --> WARNING! No filters selected
+[INFO] TIME: 2022-01-11 20:09:49,154 IN -> views <- PID:9240 THID:964 --> Main page downloaded!
+[WARNING] TIME: 2022-01-11 20:13:10,415 IN -> views <- PID:20032 THID:11840 --> WARNING! No filters selected
+[INFO] TIME: 2022-01-11 20:13:10,415 IN -> views <- PID:20032 THID:11840 --> Main page downloaded!
+[WARNING] TIME: 2022-01-11 20:19:13,917 IN -> views <- PID:20204 THID:19480 --> WARNING! No filters selected
+[INFO] TIME: 2022-01-11 20:19:13,917 IN -> views <- PID:20204 THID:19480 --> Main page downloaded!
+[INFO] TIME: 2022-01-11 20:23:17,587 IN -> views <- PID:12268 THID:12724 --> Product page downloaded
+[WARNING] TIME: 2022-01-11 20:26:22,661 IN -> views <- PID:12268 THID:12724 --> WARNING! No filters selected
+[INFO] TIME: 2022-01-11 20:26:22,661 IN -> views <- PID:12268 THID:12724 --> Main page downloaded!
+[INFO] TIME: 2022-01-11 20:26:24,567 IN -> views <- PID:12268 THID:16124 --> Product page downloaded
+[INFO] TIME: 2022-01-11 20:27:05,127 IN -> views <- PID:12268 THID:16124 --> Product page downloaded
+[WARNING] TIME: 2022-01-11 20:27:41,836 IN -> views <- PID:12268 THID:16124 --> WARNING! No filters selected
+[INFO] TIME: 2022-01-11 20:27:41,836 IN -> views <- PID:12268 THID:16124 --> Main page downloaded!
+[INFO] TIME: 2022-01-11 20:27:44,492 IN -> views <- PID:12268 THID:16124 --> Product page downloaded
+[INFO] TIME: 2022-01-11 20:27:55,724 IN -> views <- PID:12268 THID:16124 --> Product page downloaded
+[WARNING] TIME: 2022-01-11 20:31:39,779 IN -> views <- PID:12268 THID:20200 --> WARNING! No filters selected
+[INFO] TIME: 2022-01-11 20:31:39,779 IN -> views <- PID:12268 THID:20200 --> Main page downloaded!
+[WARNING] TIME: 2022-01-11 20:32:21,351 IN -> views <- PID:12268 THID:20200 --> WARNING! No filters selected
+[INFO] TIME: 2022-01-11 20:32:21,366 IN -> views <- PID:12268 THID:20200 --> Main page downloaded!
+[INFO] TIME: 2022-01-11 20:32:37,437 IN -> views <- PID:12268 THID:20200 --> Product page downloaded
+[WARNING] TIME: 2022-01-11 20:32:43,113 IN -> views <- PID:12268 THID:20200 --> WARNING! No filters selected
+[INFO] TIME: 2022-01-11 20:32:43,117 IN -> views <- PID:12268 THID:20200 --> Main page downloaded!
+[INFO] TIME: 2022-01-11 20:32:44,245 IN -> views <- PID:12268 THID:20200 --> Product page downloaded
+[INFO] TIME: 2022-01-11 20:33:14,489 IN -> views <- PID:12268 THID:20200 --> Product page downloaded

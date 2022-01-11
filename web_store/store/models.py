@@ -14,6 +14,7 @@ class Product(models.Model):
     description = models.TextField(blank=True, verbose_name='Описание товара')
     price = models.DecimalField(max_digits=6, decimal_places=2, verbose_name='Цена')
 
+
     class Meta:
         ordering = ('name',)
         verbose_name = 'Продукт'
