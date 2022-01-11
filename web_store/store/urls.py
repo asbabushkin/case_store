@@ -14,6 +14,6 @@ urlpatterns = [
     path('category/', category, name='category'),
     path('phone/', phone, name='phone'),
     path('login/', login, name='login'),
-    #path('case/<slug:product_slug>/', product_page, name='product_page'),
+
 
 ]
