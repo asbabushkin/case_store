@@ -3,29 +3,23 @@
 
 
 <!--навбар с брендами телефонов-->
-
 <div class="album py-5 bg-light">
-<ul class="nav nav-tabs" style="justify-content: center" >
-
-{% for brand in phone_brands %}
-    <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">{{ brand }}</a>
-        <ul class="dropdown-menu">
-            {% for phone in phones %}
-                {% if phone.brand == brand %}
-                    <li><a class="dropdown-item" id="{{ phone.model }}" href="#">{{ phone.model }}</a></li>
-                {% endif %}
-            {% endfor %}
-            <li>
-                <hr class="dropdown-divider">
+    <ul class="nav nav-tabs" style="justify-content: center" >
+        {% for brand in phone_brands %}
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle text-body" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">{{ brand }}</a>
+                <ul class="dropdown-menu">
+                    {% for phone in phones %}
+                        {% if phone.brand == brand %}
+                            <li><a class="dropdown-item" id="{{ phone.model }}" href="#">{{ phone.model }}</a></li>
+                        {% endif %}
+                    {% endfor %}
+                </ul>
             </li>
-            <li><a class="dropdown-item" href="#">Все модели</a></li>
-        </ul>
-    </li>
-{% endfor %}
-</ul>
+        {% endfor %}
+    </ul>
 </div>
-<!--конец навбара-->
+
 
 
 <div class="album py-5 bg-light" id="phone-selected">
@@ -33,8 +27,8 @@
 </div>
 
 
-
-<div id="card-side-menu" class="album py-5 bg-light"  style=" display: flex; justify-content: flex-start; padding-left: 20px">
+<!--контейнер с сайдбаром и карточками товаров-->
+<div id="card-side-menu" class="album py-5 bg-light">
 
     <!--сайдбар-->
     <div id="sidebar"  style="width: 25%">
@@ -43,7 +37,6 @@
             <nav class="nav flex-column">
                 <h5 id="side-bar-phone-name">Телефон не выбран</h5>
                 <h5>Категории</h5>
-
                 {{ form_filter.as_p }}
                 <button type="submit" class="btn btn-secondary">Показать</button>
             </nav>
@@ -57,7 +50,7 @@
             <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
                 {% for p in products %}
                     <div class="col">
-                        <div class="card shadow-sm">
+                        <div class="card shadow-sm border-secondary">
                             {% if p.image %}
                                 <a href="{{ p.get_absolute_url }}">
                                     <p><img width="100%" height="100%" src='{{ p.image.url }}'></p>
@@ -72,8 +65,8 @@
                             {% endif %}
 
                             <div class="card-body">
-
-                                <p class="card-text" >{{p.category_id}} "{{ p.name }}"</p>
+                                <h5 class="card-title">{{ p.name }}</h5>
+                                <p class="card-text">{{p.category_id}} </p>
                                 <p class="card-text">Цена {{ p.price }} р.</p>
 <!--                                <div class="d-flex justify-content-between align-items-center">-->
 <!--&lt;!&ndash;                                    <a href="/product/{{ p.slug }}">&ndash;&gt;-->
