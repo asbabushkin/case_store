@@ -14,37 +14,30 @@
 
 <header class="p-3 bg-dark text-white">
     <div class="container">
-        <div class="d-flex flex-wrap align-items-center justify-content-between justify-content-lg-between">
+        <div class="d-flex flex-wrap align-items-center justify-content-between justify-content-lg-between align-self-center">
             <div>
                 <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
                     <li><a href="{% url 'store:index' %}" class="nav-link px-2 text-white">Главная</a></li>
                     <li><a href="{% url 'store:about_delivery' %}" class="nav-link px-2 text-white">Доставка</a></li>
                     <li><a href="{% url 'store:about_payment' %}" class="nav-link px-2 text-white">Оплата</a></li>
-    <!--                <li><a href="{% url 'store:about' %}" class="nav-link px-2 text-white">О нас</a></li>-->
-    <!--                <li><a href="{% url 'store:faq' %}" class="nav-link px-2 text-white">FAQs</a></li>-->
+
                 </ul>
 
             </div>
 
             <div>
-                <h1 style="font-family: Quartz; font-size: 50px">Case Story</h1>
+                <h1><a href="{% url 'store:index' %}"  class="nav-link text-white" style="font-family: Quartz; font-size: 50px">Case Story</a></h1>
 
             </div>
 
-            <div>
+            <div class="d-flex">
                 <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
                     <input type="search" class="form-control form-control-dark" placeholder="Search..." aria-label="Search">
+
                 </form>
+                <p><a href="{% url 'cart:cart_detail' %}"><img src="{% static 'store/img/cart_empty.png' %}" style="width:50px; height:50px; border-radius:25px" alt="Корзина"></a></p>
 
             </div>
-
-<!--            <div class="text-end">-->
-<!--                <a href="{% url 'store:login' %}">-->
-<!--                    <button type="button" class="btn btn-outline-light me-2">Войти</button>-->
-<!--                </a>-->
-<!--                <button type="button" class="btn btn-warning">Sign-up</button>-->
-<!--            </div>-->
-        </div>
 
     </div>
 
