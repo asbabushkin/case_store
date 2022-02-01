@@ -1,6 +1,35 @@
 {% extends 'store/base.html' %}
+{% load static %}
 {% block content %}
 
+
+<!--Карусель-->
+<div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+  <div class="carousel-indicators">
+    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+  </div>
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img src="{% static 'store/img/carousel_glasses.jpg' %}" class="d-block w-100" alt="защитные стекла">
+    </div>
+    <div class="carousel-item">
+      <img src="{% static 'store/img/carousel_models_and_prints.jpg' %}" class="d-block w-100" alt="модели чехлов и принты">
+    </div>
+    <div class="carousel-item">
+      <img src="{% static 'store/img/carousel_photo_cases.jpg' %}" class="d-block w-100" alt="чехлы с вашим фото">
+    </div>
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>
 
 <!--навбар с брендами телефонов-->
 <div class="album py-5 bg-light">
@@ -25,6 +54,11 @@
 <div class="album py-5 bg-light" id="phone-selected">
     <h2  id="h2-phone-selected" align="center">Выберите модель телефона </h2>
 </div>
+
+
+
+
+
 
 
 <!--контейнер с сайдбаром и карточками товаров-->
