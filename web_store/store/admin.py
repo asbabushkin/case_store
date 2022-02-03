@@ -58,16 +58,6 @@ class CustomerAdmin(admin.ModelAdmin):
     search_fields = ('last_name',)
 
 
-# class CartAdmin(admin.ModelAdmin):
-#     list_display = ('id', 'customer_id')
-#     list_display_links = ('id',)
-
-
-# class ProductToCartAdmin(admin.ModelAdmin):
-#     list_display = ('cart_id', 'product_id')
-#     list_display_links = ('cart_id',)
-
-
 admin.site.register(Product, ProductAdmin)
 admin.site.register(Category, CategoryAdmin)
 admin.site.register(Phone, PhoneAdmin)

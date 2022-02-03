@@ -12,11 +12,6 @@ class ProductFilterForm(forms.Form):
     col_anime = forms.BooleanField(label='Аниме', required=False)
     col_labels = forms.BooleanField(label='Надписи', required=False)
 
-    # , widget = forms.HiddenInput()
-
-# class AddToCartForm(forms.Form):
-#     Cart
-#     quantity = forms.IntegerField(min_value=1, max_value=20, label='Количество')
 
 
 
