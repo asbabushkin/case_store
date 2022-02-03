@@ -32,8 +32,7 @@
 
             <div class="d-flex">
                 <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
-                    <input type="search" class="form-control form-control-dark" placeholder="Search..." aria-label="Search">
-
+                    <input type="search" class="form-control form-control-dark" placeholder="Поиск..." aria-label="Search" style="width:200px">
                 </form>
                 <p><a href="{% url 'cart:cart_detail' %}"><img src="{% static 'store/img/cart_empty.png' %}" style="width:50px; height:50px; border-radius:25px" alt="Корзина"></a></p>
 
@@ -52,8 +51,38 @@
 <!--{% endblock mainmenu %}-->
 
 {% block content %}
-
 {% endblock %}
+
+
+<!--НЕ УДАЛЯТЬ. РАБОЧАЯ ПАГИНАЦИЯ.-->
+
+<!--{% if page_obj.has_other_pages %}-->
+<!--<nav class="list-pages">-->
+<!--    <ul>-->
+<!--    {% if page_obj.has_previous %}-->
+<!--        <li class="page-num">-->
+<!--            <a href="?page={{ page_obj.previous_page_number }}">&lt;</a>-->
+<!--        </li>-->
+<!--    {% endif %}-->
+
+<!--    {% for p in paginator.page_range %}-->
+<!--        {% if page_obj.number == p %}-->
+<!--            <li class="page-num page-num-selected">{{ p }}</li>-->
+<!--        {% elif p >= page_obj.number|add:-2 and p <= page_obj.number|add:2  %}-->
+<!--            <li class="page-num">-->
+<!--                <a href="?page={{ p }}">{{ p }}</a>-->
+<!--            </li>-->
+<!--        {% endif %}-->
+<!--    {% endfor %}-->
+
+<!--    {% if page_obj.has_next %}-->
+<!--        <li class="page-num">-->
+<!--            <a href="?page={{ page_obj.next_page_number }}">&gt;</a>-->
+<!--        </li>-->
+<!--    {% endif %}-->
+<!--    </ul>-->
+<!--</nav>-->
+<!--{% endif %}-->
 
 <footer class="py-3 my-4">
     <ul class="nav justify-content-center border-bottom pb-3 mb-3">

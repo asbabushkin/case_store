@@ -11,30 +11,30 @@ from cart.forms import CartAddProductForm
 
 logger = logging.getLogger(__name__)
 
-menu = [
-    {'title': 'Главная', 'url_name': 'index'},
-    {'title': 'Доставка', 'url_name': 'about_delivery'},
-    {'title': 'Оплата', 'url_name': 'about_payment'},
-    {'title': 'О нас', 'url_name': 'about'},
-    {'title': 'Частые вопросы', 'url_name': 'faq'},
-    {'title': 'Личный кабинет', 'url_name': 'personal_account'},
-    {'title': 'Корзина', 'url_name': 'cart'},
-    {'title': 'Категория', 'url_name': 'category'},
-    {'title': 'Телефон', 'url_name': 'phone'},
-    {'title': 'Логин', 'url_name': 'login'},
-]
+# menu = [
+#     {'title': 'Главная', 'url_name': 'index'},
+#     {'title': 'Доставка', 'url_name': 'about_delivery'},
+#     {'title': 'Оплата', 'url_name': 'about_payment'},
+#     {'title': 'О нас', 'url_name': 'about'},
+#     {'title': 'Частые вопросы', 'url_name': 'faq'},
+#     {'title': 'Личный кабинет', 'url_name': 'personal_account'},
+#     {'title': 'Корзина', 'url_name': 'cart'},
+#     {'title': 'Категория', 'url_name': 'category'},
+#     {'title': 'Телефон', 'url_name': 'phone'},
+#     {'title': 'Логин', 'url_name': 'login'},
+# ]
 
 
 class StoreHome(ListView):
+    # paginate_by = 3
     model = Product
     form_filter = ProductFilterForm
     template_name = 'store/index.html'
     context_object_name = 'products'
-    paginate_by = 3
+
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
-
         context['phone_brands'] = list(Phone.objects.values_list('brand', flat=True).distinct().order_by('brand'))
         context['phones'] = Phone.objects.all()
         context['img_collection'] = Property.objects.all()
@@ -141,7 +141,7 @@ class ProductPage(DetailView):
         context = super().get_context_data(**kwargs)
         context['name'] = context['product']
         context['product'] = context['product']
-        context['menu'] = menu
+        # context['menu'] = menu
         context['cart_product_form'] = CartAddProductForm
         logger.info('Product page downloaded')
         return context
