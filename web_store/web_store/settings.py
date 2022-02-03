@@ -71,6 +71,7 @@ INSTALLED_APPS = [
     'store.apps.StoreConfig',
     'cart',
     'psycopg2',
+    'orders',
 ]
 
 MIDDLEWARE = [
