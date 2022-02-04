@@ -16,7 +16,7 @@
 <!--                </div>-->
 <!--            </form>-->
 
-            <p class="price">{{ product.price }}</p>
+<!--            <p class="price">{{ product.price }}</p>-->
             <form id="cartForm" action= "{% url 'cart:cart_add' product.id %}" method="post">
                 {{ cart_product_form }}
                 {% csrf_token %}
