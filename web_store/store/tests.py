@@ -51,18 +51,7 @@ class ProductFilterFormTest(TestCase):
         self.assertTrue(self.form.fields['phone_name'].max_length == 30)
 
 
-# class ProductDatabaseTest(TestCase):
-#
-#     def setUp(self):
-#        self.client = Client()
-#
-#     def test_products_number(self):
-#         response = self.client.get(reverse('store:index'))
-#         prod_list = list(response.context['products'])
-#         print('prod_list: ')
-#         print(prod_list)
-#         print(response.context['products'])
-#         self.assertTrue(len(response.context['products']) == 17)
+
 
 
 

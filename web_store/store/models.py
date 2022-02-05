@@ -10,7 +10,7 @@ class Product(models.Model):
     category_id = models.ForeignKey('Category', on_delete=models.PROTECT, verbose_name='Категория')
     name = models.CharField(max_length=100, db_index=True, verbose_name='Наименование товара')
     slug = models.SlugField(max_length=255, db_index=True, unique=True, verbose_name='URL')
-    image = models.ImageField('Изображение', upload_to='cases/%Y/%m/%d')
+    image = models.ImageField(upload_to='cases/%Y/%m/%d', verbose_name='Изображение')
     description = models.TextField(blank=True, verbose_name='Описание товара')
     price = models.DecimalField(max_digits=6, decimal_places=2, verbose_name='Цена')
 
